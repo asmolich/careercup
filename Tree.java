@@ -3,7 +3,7 @@ import java.util.function.*;
 
 public class Tree {
     public static void main(String[] args) {
-        int[] data = new int[]{1, 2, 3, 4,5,6,7,8,9,10,11,12,13,14,15};
+        int[] data = new int[]{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
         Solution s = new Solution();
         TreeNode root = s.sortedArrayToBalancedBst(data);
 
@@ -37,8 +37,6 @@ public class Tree {
         System.out.println("0th smallest is " + s.kthSmallest(root, 0));
         System.out.println("13th smallest is " + s.kthSmallest(root, 13));
         System.out.println("16th smallest is " + s.kthSmallest(root, 16));
-
-        System.out.println("Symmetric? " + (s.isSymmetric(root) == 1 ? "YES" : "NO"));
 
 		List<List<TreeNode>> paths = new ArrayList<List<TreeNode>>();
         LinkedList<TreeNode> path = new LinkedList<TreeNode>();
@@ -77,7 +75,7 @@ public class Tree {
         System.out.println("hasPathSum of 15 ? " + (s.hasPathSum(root, 15) == 1 ? "YES" : "NO"));
         System.out.println("hasPathSum of 14 ? " + (s.hasPathSum(root, 14) == 1 ? "YES" : "NO"));
 
-        s.flatten(root);
+        s.flattenIterative(root);
         System.out.println("Flattened:");
         System.out.println(s.levelOrder(root));
 
@@ -120,11 +118,6 @@ class TreeNode {
     public String toString() {
         return ""+value;
     }
-}
-
-class TreeNodeCount {
-    TreeNode node = null;
-    int count = 0;
 }
 
 class TreeNodePrio implements Comparable<TreeNodePrio> {
@@ -480,6 +473,24 @@ class Solution {
         }
     }
 
+	public TreeNode flattenIterative(TreeNode root) {
+        if (root == null) return null;
+        TreeNode node = root;
+        while (node != null) {
+            if (node.left != null) {
+                TreeNode prev = node.left;
+                while (prev.right != null) {
+                    prev = prev.right;
+                }
+                prev.right = node.right;
+                node.right = node.left;
+                node.left = null;
+            }
+            node = node.right;
+        }
+        return root;
+	}
+
     public int hasPathSum(TreeNode root, int b) {
         if (root == null) return 0;
         if (root.left == null && root.right == null) return b == root.value ? 1 : 0;
@@ -554,7 +565,8 @@ class Solution {
  
         ArrayList<TreeNode> traversal = new ArrayList<TreeNode>();
         kthSmallest0(root, traversal, k);
-        return traversal.get(k);
+        if (k > traversal.size()) return -1;
+        return traversal.get(k).value;
     }
     private void kthSmallest0(TreeNode root, ArrayList<TreeNode> trav, int k) {
         if (root == null) return;
@@ -584,9 +596,5 @@ class Solution {
         }
         return -1;
     }
-
-	public int isSymmetric(TreeNode root) {
-        return 0;
-	}
 }
 

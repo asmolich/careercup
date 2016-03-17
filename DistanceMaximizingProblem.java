@@ -8,6 +8,7 @@ public class DistanceMaximizingProblem {
 
 	public int distMax(int[] a) {
         if (a == null || a.length < 2) return 0;
+        if (a.length == 2) return 1; 
 
         int[] loMin = new int[a.length];
         int[] hiMax = new int[a.length];
@@ -31,9 +32,8 @@ public class DistanceMaximizingProblem {
         int maxDiff = 0;
         // Scan both arrays from left to right to find max (j - i)
         for (int i = 0, j = 0; i < a.length && j < a.length;) {
-            int diff = hiMax[j] - loMin[i];
-            if (diff > 0) {
-                if (maxDiff < diff) maxDiff = diff;
+            if (loMin[i] <= hiMax[j]) {
+                if (maxDiff < j - i) maxDiff = j - i;
                 j++;
             }
             else {

@@ -36,7 +36,7 @@ public class LinkedListInsertionSort {
         ListNode sorted = head;
         ListNode unsorted = head.next;
         ListNode unsortedPrev = head;
-        while(unsorted.next != null) {
+        while(unsorted != null) {
 		    //System.out.println("unsorted = " + unsorted);
             if (unsortedPrev.value > unsorted.value) {
                 unsortedPrev.next = unsorted.next;

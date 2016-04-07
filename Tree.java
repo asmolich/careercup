@@ -5,6 +5,7 @@ public class Tree {
     public static void main(String[] args) {
         int[] data = new int[]{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
         Solution s = new Solution();
+        HorizontalDistance hd = new HorizontalDistance();
         TreeNode root = s.sortedArrayToBalancedBst(data);
 
         System.out.println("LevelOrder:");
@@ -29,6 +30,8 @@ public class Tree {
         System.out.println("ZigzagOrderIterative:");
         System.out.println(s.zigzagOrderIterative(root));
 
+        System.out.println("Diameter = " + hd.diameter(root));
+        
         System.out.println("5th smallest is " + s.kthSmallest(root, 5));
         System.out.println("0th smallest is " + s.kthSmallest(root, 0));
         System.out.println("13th smallest is " + s.kthSmallest(root, 13));
@@ -79,6 +82,7 @@ public class Tree {
         System.out.println("Flattened:");
         System.out.println(s.levelOrder(root));
 
+        System.out.println("Diameter = " + hd.diameter(root));
 
         System.out.println("Construct from: ");
         int[] lvlOrder = new int[]{2,1,4,-1,-1,3,-1,-1,-1};
@@ -99,6 +103,7 @@ public class Tree {
         s.connect(root);
         System.out.println(s.linkedTraversal(root));
 
+        System.out.println("Diameter = " + hd.diameter(root));
     }
 }
 
@@ -595,6 +600,33 @@ class Solution {
             }
         }
         return -1;
+    }
+}
+    
+class HorizontalDistance {
+    int maxNeg = 0;
+    int maxPos = 0;
+
+    public int diameter(TreeNode root) {
+        if (root == null) return 0;
+        maxNeg = 0;
+        maxPos = 0;
+
+        horizontalDistance0(root, 0, 0);
+
+        return maxPos - maxNeg;
+    }
+
+    private void horizontalDistance0(TreeNode node, int l, int r) {
+        if (node.left == null && node.right == null) {
+            int hd = r - l;
+            if (hd < 0 && hd < maxNeg) maxNeg = hd;
+            if (hd > 0 && hd > maxPos) maxPos = hd;
+            return;
+        }
+
+        if (node.left != null) horizontalDistance0(node.left, l + 1, r);
+        if (node.right != null) horizontalDistance0(node.right, l, r + 1);
     }
 }
 

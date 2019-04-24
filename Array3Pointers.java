@@ -1,134 +1,51 @@
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+
+/**
+ * Array 3 Pointers. https://www.interviewbit.com/problems/array-3-pointers/
+ *
+ *
+ * You are given 3 arrays A, B and C. All 3 of the arrays are sorted.
+ *
+ * Find i, j, k such that: max(abs(A[i] - B[j]), abs(B[j] - C[k]), abs(C[k] - A[i])) is minimized.
+ * Return the minimum
+ */
 public class Array3Pointers {
     public static void main(String[] args) {
-		Array3Pointers a3p = new Array3Pointers();
-		List<Integer> a = Arrays.asList(1, 4, 10);
-		List<Integer> b = Arrays.asList(2, 15);
-		List<Integer> c = Arrays.asList(10, 12);
-		System.out.println(a3p.minimize(a, b, c));
-	}
+        Array3Pointers a3p = new Array3Pointers();
+        List<Integer> a = Arrays.asList(1, 4, 10);
+        List<Integer> b = Arrays.asList(2, 15);
+        List<Integer> c = Arrays.asList(10, 12);
+        //System.out.println(a3p.minimize(a, b, c));
 
-    class ListIndex implements Comparable<ListIndex> {
-        List<Integer> l;
-        int idx;
-        ListIndex(List<Integer> list,int index) {l=list;idx=index;}
-        @Override
-        public int compareTo(ListIndex li) {
-            return Integer.compare(l.get(idx), li.l.get(li.idx));
-        }
-        @Override
-        public String toString() {
-            return "" + l + '['+idx+']';
-        }
-        public boolean hasNext() {
-            return idx + 1 < l.size();
-        }
+        int[] x = new int[]{1, 4, 10};
+        int[] y = new int[]{2, 15};
+        int[] z = new int[]{10, 12};
+
+        System.out.println(a3p.minimize(x, y, z));
     }
 
-	public int minimize(final List<Integer> a, final List<Integer> b, final List<Integer> c) {
-        if (a == null || a.isEmpty() || b == null || b.isEmpty() || c == null || c.isEmpty()) return 0;
-       
-        System.out.println("a = " + a);
-        System.out.println("b = " + b);
-        System.out.println("c = " + c);
+    private int minimize(int[] a, int[] b, int[] c) {
+        if (a == null || a.length == 0 || b == null || b.length == 0 || c == null || c.length == 0) return -1;
 
-        //ListIndex[] arr = new ListIndex[]{new ListIndex(a, 0), new ListIndex(b, 0), new ListIndex(c, 0)};
-        ListIndex ai = new ListIndex(a, 0);
-        ListIndex bj = new ListIndex(b, 0);
-        ListIndex ck = new ListIndex(c, 0);
+        int i = 0;
+        int j = 0;
+        int k = 0;
+        int globalMin = Integer.MAX_VALUE;
+        while (i < a.length && j < b.length && k < c.length) {
+            int min = Math.min(a[i], Math.min(b[j], c[k]));
+            int max = Math.max(a[i], Math.max(b[j], c[k]));
 
-        int minDiff = Integer.MAX_VALUE;
-        while (!ai.l.isEmpty() || !bj.l.isEmpty() || !ck.l.isEmpty()) {
-            ListIndex min = min(ai, bj, ck);
-            ListIndex max = max(ai, bj, ck);
+            //System.out.format("a[%s] = %2s, b[%s] = %2s, c[%s] = %2s, max = %2s %n", i, a[i], j, b[j], k, c[k], max);
 
-            System.out.println("ai = " + ai);
-            System.out.println("ai.cT(bj) = " + ai.compareTo(bj));
-            
-            System.out.println("min = " + min);
-            System.out.println("max = " + max);
+            int diff = max - min;
+            if (globalMin > diff) globalMin = diff;
 
-            int diff = max.l.get(max.idx) - min.l.get(min.idx);
-            if (diff == 0) return 0;
-
-            if (diff < minDiff) minDiff = diff;
-
-            if (min.hasNext()) min.idx++;
-            else break;
+            if (min == a[i]) i++;
+            else if (min == b[j]) j++;
+            else k++;
         }
 
-        /*
-        int i = 0, j = 0, k = 0, count = 0;
-        while(i < a.size() || j < b.size() || k < c.size()) {
-            int ai = a.get(i);
-            int bj = b.get(j);
-            int ck = c.get(k);
-
-            int min = min(ai, bj, ck);
-            List<Integer> minList = null;
-            int minIdx = 0;
-            if (min == ai) {
-                minList = a;
-                minIdx = i;
-            }
-            else if (min == bj) {
-                minList = b;
-                minIdx = j;
-            }
-            else {
-                minList = c;
-                minIdx = k;
-            }
-            
-            int max = max(ai, bj, ck);
-            List<Integer> maxList = null;
-            if (max == ai) maxList = a;
-            else if (max == bj) maxList = b;
-            else maxList = c;
-            
-            //balance
-            int diff = abs(max - min);
-            int d;
-            if ((minIdx == i && minIdx < a.size() - 1) ||
-                (minIdx == j && minIdx < b.size() - 1) ||
-                (minIdx < c.size() - 1))
-                d = Math.min(diff, abs(max - minList.get(minIdx + 1)));
-            else d = diff;
-
-            if (diff != d) {
-                if (minIdx == i) i++;
-                else if (minIdx == j) j++;
-                else k++;
-                count = 0;
-            }
-            else {
-                count++;
-            }
-            if (count >= 3) break;
-        }
-        */
-        //return max(abs(a.get(i) - b.get(j)), abs(b.get(j) - c.get(k)), abs(c.get(k) - a.get(i)));
-        return abs(minDiff);
-    }
-    private ListIndex min(ListIndex a, ListIndex b) {
-        return a.compareTo(b) < 1 ? a : b;
-    }
-    private ListIndex min(ListIndex a, ListIndex b, ListIndex c) {
-        return min(min(a, b), c); 
-    }
-    private ListIndex max(ListIndex a, ListIndex b) {
-        return a.compareTo(b) > -1 ? a : b;
-    }
-    private ListIndex max(ListIndex a, ListIndex b, ListIndex c) {
-        return max(max(a, b), c); 
-    }
-
-    private int max(int a, int b, int c) {
-        return Math.max(Math.max(a, b), c);
-    }
-    private int abs(int x) {
-        if (x < 0) return -x;
-        return x;
+        return globalMin;
     }
 }
-

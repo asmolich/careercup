@@ -76,7 +76,46 @@ public class BstIterator {
             }
             if (node != null) parents.add(node);
         }
+
+//        while (!parents.isEmpty()) {
+//            if (left) parents.peek().left = null;
+//            else parents.poll().right = null;
+//            left = !left;
+//        }
+
         return head;
+    }
+
+    static class NullNode extends TreeNode {
+        NullNode(int x) {
+            super(x);
+        }
+    }
+
+    public static String toString(TreeNode head) {
+        if (head == null) return "null";
+
+        Queue<TreeNode> q = new ArrayDeque<>();
+        q.add(head);
+
+        Queue<String> res = new ArrayDeque<>();
+        while (!q.isEmpty()) {
+            TreeNode node = q.poll();
+
+            if (node instanceof NullNode) {
+                res.add("null");
+                continue;
+            } else {
+                res.add(String.valueOf(node.val));
+            }
+
+            if (node.left != null) q.add(node.left);
+            else q.add(new NullNode(-1));
+            if (node.right != null) q.add(node.right);
+            else q.add(new NullNode(-1));
+        }
+
+        return String.join(",", res);
     }
 
     private static void inOrder(TreeNode node) {
@@ -90,11 +129,14 @@ public class BstIterator {
 
     public static void main(String[] args) {
         TreeNode root = buildBstFromLevelOrder(new Integer[]{4, 2, 6, 1, 3, null, 7, null, null, null, null, null, null});
+        //TreeNode root = buildBstFromLevelOrder(new Integer[]{4, 2, 6, 1, 3, null, 7});
 
         System.out.print("In Order = ");
         inOrder(root);
-
         System.out.println();
+
+        System.out.println("To String = " + toString(root));
+
         BstIterator i = new BstIterator(root);
         while (i.hasNext()) {
             System.out.print(i.next() + ", ");

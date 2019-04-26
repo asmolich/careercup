@@ -6,9 +6,9 @@ public class DistanceMaximizingProblem {
         System.out.println(dmp.distMax(new int[]{4,3,5,2,1,3,2,3}));
     }
 
-	public int distMax(int[] a) {
+    private int distMax(int[] a) {
         if (a == null || a.length < 2) return 0;
-        if (a.length == 2) return 1; 
+        if (a.length == 2) return 1;
 
         int[] loMin = new int[a.length];
         int[] hiMax = new int[a.length];
@@ -18,7 +18,7 @@ public class DistanceMaximizingProblem {
         for (int i = 1; i < a.length; i++) {
             loMin[i] = Math.min(loMin[i - 1], a[i]);
         }
-        
+
         // Possible `j` indexes
         hiMax[a.length - 1] = a[a.length - 1];
         for (int i = a.length - 2; i >= 0; i--) {

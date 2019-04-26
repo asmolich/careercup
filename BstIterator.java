@@ -92,6 +92,10 @@ public class BstIterator {
         }
     }
 
+    /**
+     * 297. Serialize and Deserialize Binary Tree
+     * https://leetcode.com/problems/serialize-and-deserialize-binary-tree
+     */
     public static String toString(TreeNode head) {
         if (head == null) return "null";
 

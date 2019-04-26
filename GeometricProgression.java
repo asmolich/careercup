@@ -1,5 +1,3 @@
-package net.wargaming.freya.platform.shared.dropwizard;
-
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -38,8 +36,8 @@ public class GeometricProgression {
 }
 
 
-// tree traversal
+// tree traversals
 // tree structures
 // recursive -> iterative using stacks or queues
 // hash maps, stacks, queues
-// strings (isPalindrom, isAnagram)
+// strings (isPalindrome, isAnagram)

@@ -1,22 +1,24 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Strings {
     public static void main(String[] args) {
         Strings s = new Strings();
         String test = "abc";
         System.out.println("Rank of " + test + " is " + s.rank(test));
 
-		System.out.println(s.isPalindrome("A man, a plan, a canal: Panama"));
-		System.out.println("0100100\n" + s.restoreIpAddresses("0100100"));
+        System.out.println(s.isPalindrome("A man, a plan, a canal: Panama"));
+        System.out.println("0100100\n" + s.restoreIpAddresses("0100100"));
 
-		System.out.println("100 + 11 = " + s.addBinary("1", "10").equals("11"));
-		System.out.println("is 16 a power of 2? "+ s.power("16"));
-		
-		System.out.println("abb longestPalindrome = "+ s.longestPalindrome("abb"));
+        System.out.println("100 + 11 = " + s.addBinary("1", "10").equals("11"));
+        System.out.println("is 16 a power of 2? " + s.power("16"));
+
+        System.out.println("abb longestPalindrome = " + s.longestPalindrome("abb"));
 
         System.out.println(s.zigzagConvert("Helloworld", 4));
     }
 
-    public int rank(String s) {
+    private int rank(String s) {
         int res = 0;
         if (s == null || s.isEmpty()) return res;
 
@@ -29,26 +31,11 @@ public class Strings {
         return res;
     }
 
-    List<String> permutations(String s) {
-        if (s == null || s.isEmpty()) return Collections.emptyList();
-
-        int n = s.length();
-        char[] ch = new char[n];
-        s.getChars(0, n - 1, ch, 0);
-
-        List<String> pmts = new ArrayList<String>();
-        for (int i = 0; i < n; i++) {
-                         
-        }
-        return pmts;
-    }
-
     public boolean isPalindrome(String a) {
         if (a == null || a.isEmpty()) return false;
 
         int i = 0;
         int j = a.length() - 1;
-        int result = 0;
         while (i <= j) {
             char ci = a.charAt(i++);
             if (isAlphaNumeric(ci)) {
@@ -57,25 +44,27 @@ public class Strings {
                     if (Character.toLowerCase(ci) != Character.toLowerCase(cj)) {
                         return false;
                     }
-                }
-                else {
+                } else {
                     i--;
                 }
             }
         }
         return true;
     }
+
     private boolean isAlphaNumeric(char ch) {
         return ('A' <= ch && ch <= 'Z') || ('a' <= ch && ch <= 'z') || ('0' <= ch && ch <= '9');
     }
 
     static class IP {
         int[] ip = new int[4];
-        IP(){}
+
+        IP() {}
+
         static IP valueOf(String[] a) {
             if (a.length != 4) return null;
             IP res = new IP();
-            for(int i = 0; i < 4; i++) {
+            for (int i = 0; i < 4; i++) {
                 String s = a[i];
                 if (s.length() <= 0 || s.length() > 3 || s.length() > 1 && s.startsWith("0")) return null;
                 res.ip[i] = Integer.parseInt(s);
@@ -83,11 +72,13 @@ public class Strings {
             }
             return res;
         }
+
         @Override
         public String toString() {
-            return "["+ip[0]+'.'+ip[1]+'.'+ip[2]+'.'+ip[3]+']';
+            return "[" + ip[0] + '.' + ip[1] + '.' + ip[2] + '.' + ip[3] + ']';
         }
     }
+
     public ArrayList<String> restoreIpAddresses(String a) {
         ArrayList<String> res = new ArrayList<String>();
         String[] temp = new String[4];
@@ -105,7 +96,7 @@ public class Strings {
                     if (t[2].length() < k) break;
                     temp[2] = t[2].substring(0, k);
                     temp[3] = t[2].substring(k);
-                   
+
 
                     IP ip = IP.valueOf(temp);
                     if (ip != null) {
@@ -119,10 +110,10 @@ public class Strings {
 
     public String addBinary(String a, String b) {
         if (a == null || a.isEmpty() || b == null || b.isEmpty()) return "";
-        
+
         int m = a.length();
         int n = b.length();
-        
+
         int lng = Math.max(m, n);
         int resLen = lng + 1;
         char[] res = new char[resLen];
@@ -132,8 +123,8 @@ public class Strings {
             char bi = (n - 1 - i >= 0) ? b.charAt(n - 1 - i) : '0';
 
             int r = (ai - '0') + (bi - '0') + carryOver;
-            res[resLen - 1 - i] = (char)(r % 2 + '0');
-            carryOver = (char)(r / 2);
+            res[resLen - 1 - i] = (char) (r % 2 + '0');
+            carryOver = (char) (r / 2);
         }
         if (carryOver == 1) {
             res[0] = '1';
@@ -154,43 +145,27 @@ public class Strings {
 
         if ("0".equals(s) || "0".equals(l)) return "0";
         if ("1".equals(s)) return l;
-        return ""; 
-    }
-    private String sum(String a, String b) {
-        String s = a;
-        String l = b;
-        if (a.length() > b.length()) {
-            s = b;
-            l = a;
-        }
-        if ("0".equals(s)) return l;
-        if ("0".equals(l)) return s;
-
-        StringBuilder sb = new StringBuilder();
-        
-        for (int i = 0; i < l.length(); i++) {
-            sb.append("");
-        }
         return "";
     }
-    
-	public int power(String a) {
+
+    public int power(String a) {
         System.out.println("========================");
         if (a == null || a.isEmpty()) return 0;
-        
+
         char lastDigit = a.charAt(a.length() - 1);
         if ((lastDigit - '0') % 2 != 0) return 0;
-        
+
         String temp = a;
         while (temp != null && !temp.isEmpty()) {
             temp = divideBy2(temp);
             if ("1".equals(temp)) break;
-            
+
             lastDigit = temp.charAt(temp.length() - 1);
             if ((lastDigit - '0') % 2 != 0) return 0;
         }
         return 1;
     }
+
     private String divideBy2(String s) {
         int carryOver = 0;
         StringBuilder sb = new StringBuilder();
@@ -207,18 +182,9 @@ public class Strings {
         return sb.toString();
     }
 
-    private String sum(String a, String b) {
-        if (a == "0") return b;
-        if (b == "0") return a;
-
-        int n = Math.max(a.length(), b.length()) + 1;
-        int carryOver = 0;
-
-    }
-
-    public String longestPalindrome(String a) {
+    private String longestPalindrome(String a) {
         if (a == null || a.isEmpty()) return "";
-        
+
         String lp = "";
         int max = 0;
         for (int i = 0; i < a.length(); i++) {
@@ -235,6 +201,7 @@ public class Strings {
         }
         return lp;
     }
+
     private String findPalindrome(String s, int idx, boolean dbl) {
         int paliBegin = idx;
         int paliEnd = idx;
@@ -244,8 +211,7 @@ public class Strings {
             if (s.charAt(i) == s.charAt(j)) {
                 paliBegin = i;
                 paliEnd = j;
-            }
-            else break;
+            } else break;
             i--;
             j++;
         }
@@ -256,19 +222,19 @@ public class Strings {
      * Helloworld, 3
      * -------------
      * H   o   l
-     *  e l w r d  = Holelwrdlo
-     *   l   o
+     * e l w r d  = Holelwrdlo
+     * l   o
      * ========================
      * Helloworld, 4
      * -------------
      * H     o
-     *  e   w r
-     *   l o   l   = Hoewrlolld
-     *    l     d
+     * e   w r
+     * l o   l   = Hoewrlolld
+     * l     d
      */
-    public String zigzagConvert(String s, int rows) {
+    private String zigzagConvert(String s, int rows) {
         if (rows <= 1) return s;
-        
+
         StringBuilder[] builders = new StringBuilder[rows];
         for (int i = 0; i < rows; i++) {
             builders[i] = new StringBuilder();
@@ -281,7 +247,7 @@ public class Strings {
             builders[k].append(s.charAt(i++));
             k += dir;
         }
-        
+
         for (int j = 1; j < rows; j++) {
             builders[0].append(builders[j]);
         }

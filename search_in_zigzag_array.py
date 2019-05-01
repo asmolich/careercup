@@ -30,9 +30,9 @@ def search0(arr, start, end, n):
         left = -1
         right = -1
         if end / 2 - 1 > start:
-            left = search0(arr, start, end / 2 - 1, n)
-        if start + index_diff / 2 < end:
-            right = search0(arr, start + index_diff / 2, end, n)
+            left = search0(arr, start, end // 2 - 1, n)
+        if start + index_diff // 2 < end:
+            right = search0(arr, start + index_diff // 2, end, n)
         if left != -1:
             result = left
         elif right != -1:
@@ -43,6 +43,6 @@ def search0(arr, start, end, n):
     return result
 
 
-print search([1, 2, 3, 4, 3, 4, 5, 6, 7], 6)
-print search([1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 7, 8], 8)
-print search([1, 2, 3, 4, 5, 4, 3, 2, 1, 0, -1], 6)
+print(search([1, 2, 3, 4, 3, 4, 5, 6, 7], 6))  # 7
+print(search([1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 7, 8], 8))  # 17
+print(search([1, 2, 3, 4, 5, 4, 3, 2, 1, 0, -1], 6))  # -1

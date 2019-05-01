@@ -1,12 +1,15 @@
-import java.util.*;
-import java.util.function.*;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+import java.util.function.Predicate;
+
 public class FilterIterator<T> implements Iterator<T> {
 
     public static void main(String[] args) {
-        List<Integer> list = Arrays.asList(1,2,3,4,5,6,7,8,9,10, null, null, null, 11, 12);
-        FilterIterator<Integer> fi = new FilterIterator<Integer>(list.iterator(), el -> el == null || el % 2 == 0);
+        List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, null, null, null, 11, 12);
+        FilterIterator<Integer> fi = new FilterIterator<>(list.iterator(), el -> el == null || el % 2 == 0);
         System.out.print("Result: [ ");
-        while(fi.hasNext()) {
+        while (fi.hasNext()) {
             Integer n = fi.next();
             System.out.print("" + n + ", ");
         }
@@ -17,6 +20,7 @@ public class FilterIterator<T> implements Iterator<T> {
     private final Predicate<T> filter;
 
     private T next = null;
+
     enum State {
         // next is not calculated
         NOT_READY,
@@ -25,6 +29,7 @@ public class FilterIterator<T> implements Iterator<T> {
         // next is calculated and return
         DONE
     }
+
     private State state = State.NOT_READY;
 
     FilterIterator(Iterator<T> i, Predicate<T> p) {
@@ -38,7 +43,7 @@ public class FilterIterator<T> implements Iterator<T> {
         if (state == State.DONE) return result;
         if (state == State.READY) result = true;
         else {
-            while(it.hasNext()) {
+            while (it.hasNext()) {
                 T elem = it.next();
                 if (filter.test(elem)) {
                     next = elem;

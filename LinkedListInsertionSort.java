@@ -1,33 +1,42 @@
-import java.util.*;
-
 public class LinkedListInsertionSort {
     static class ListNode {
         int value;
         ListNode next;
-        ListNode(int v){value=v;}
-		@Override
-		public String toString(){ return ""+value;}
+
+        ListNode(int v) {value = v;}
+
+        @Override
+        public String toString() { return "" + value;}
     }
 
     public static void main(String[] args) {
         ListNode list = new ListNode(5);
         ListNode temp = list;
-        temp.next = new ListNode(4); temp = temp.next;
-        temp.next = new ListNode(7); temp = temp.next;
-        temp.next = new ListNode(1); temp = temp.next;
-        temp.next = new ListNode(0); temp = temp.next;
-        temp.next = new ListNode(8); temp = temp.next;
-        temp.next = new ListNode(3); temp = temp.next;
-        temp.next = new ListNode(4); temp = temp.next;
-        temp.next = new ListNode(5); temp = temp.next;
-        temp.next = new ListNode(9); temp = temp.next;
+        temp.next = new ListNode(4);
+        temp = temp.next;
+        temp.next = new ListNode(7);
+        temp = temp.next;
+        temp.next = new ListNode(1);
+        temp = temp.next;
+        temp.next = new ListNode(0);
+        temp = temp.next;
+        temp.next = new ListNode(8);
+        temp = temp.next;
+        temp.next = new ListNode(3);
+        temp = temp.next;
+        temp.next = new ListNode(4);
+        temp = temp.next;
+        temp.next = new ListNode(5);
+        temp = temp.next;
+        temp.next = new ListNode(9);
+        temp = temp.next;
         temp.next = new ListNode(6);
 
         // Expected: 0 1 3 4 4 5 5 6 7 8 9
-		System.out.println("Input: ");
+        System.out.println("Input: ");
         print(list);
-		System.out.println("Sorted: ");
-		print(sort(list));
+        System.out.println("Sorted: ");
+        print(sort(list));
     }
 
     public static ListNode sort(final ListNode head) {
@@ -36,8 +45,8 @@ public class LinkedListInsertionSort {
         ListNode sorted = head;
         ListNode unsorted = head.next;
         ListNode unsortedPrev = head;
-        while(unsorted != null) {
-		    //System.out.println("unsorted = " + unsorted);
+        while (unsorted != null) {
+            //System.out.println("unsorted = " + unsorted);
             if (unsortedPrev.value > unsorted.value) {
                 unsortedPrev.next = unsorted.next;
                 sorted = insert(sorted, unsorted, unsorted.next);
@@ -51,9 +60,9 @@ public class LinkedListInsertionSort {
     private static void print(ListNode node) {
         if (node == null) return;
 
-		while (node.next != null) {
-			System.out.print("" + node + " ");
-			node = node.next;
+        while (node.next != null) {
+            System.out.print("" + node + " ");
+            node = node.next;
         }
         System.out.println();
     }

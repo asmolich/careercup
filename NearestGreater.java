@@ -1,9 +1,11 @@
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.Arrays;
+import java.util.Deque;
 
 /**
  * Given an array of integers a, return a new array b using the following guidelines:
  *
- * For each index i in b, the value of b[i] is the index of the a[j] nearest to a[i] and is also greater than a[i].
+ * For each index i in b, the val of b[i] is the index of the a[j] nearest to a[i] and is also greater than a[i].
  * If there are two options for b[i], put the leftmost one in b[i].
  * If there are no options for b[i], put -1 in b[i].
  *
@@ -31,36 +33,32 @@ public class NearestGreater {
             if (a[i] == a[max]) { b[i] = -1; }
             if (a[i] == a[top]) {
                 b[i] = b[top];
-                System.out.println("i=" + i + ", a[i]="+a[i]+", top=" + top + ", a[top]="+a[top]);
-            }
-            else if (a[i] > a[top]) {
+                System.out.println("i=" + i + ", a[i]=" + a[i] + ", top=" + top + ", a[top]=" + a[top]);
+            } else if (a[i] > a[top]) {
                 top = stack.removeLast();
                 if (stack.isEmpty()) {
                     b[top] = i;
-                }
-                else {
+                } else {
                     while (!stack.isEmpty() && a[i] > a[stack.getLast()]) { top = stack.removeLast(); }
                     if (stack.isEmpty()) {
                         b[top] = i;
                         b[i] = -1;
                         max = i;
-                    }
-                    else {
+                    } else {
                         top = stack.getLast();
                         b[i] = top;
                     }
                 }
-            }
-            else {
+            } else {
                 b[i] = top;
             }
             stack.addLast(i);
         }
         return b;
     }
-    
+
     public static void main(String[] args) {
-        int[] input = new int[] {1, 4, 2, 1, 7, 6};
+        int[] input = new int[]{1, 4, 2, 1, 7, 6};
         System.out.println("Input  = " + Arrays.toString(input));
         int[] output = nearestGreater(input);
         System.out.println("Output = " + Arrays.toString(output));

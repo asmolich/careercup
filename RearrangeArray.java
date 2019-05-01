@@ -1,4 +1,5 @@
-import java.util.*;
+import java.util.Arrays;
+
 public class RearrangeArray {
     public static void main(String[] args) {
         RearrangeArray ra = new RearrangeArray();
@@ -31,6 +32,7 @@ public class RearrangeArray {
             a[i] /= n;
         }
     }
+
     private void swap(int[] a, int i, int j) {
         int temp = a[i];
         a[i] = a[j];

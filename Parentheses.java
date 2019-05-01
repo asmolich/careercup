@@ -1,4 +1,5 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 class Parentheses {
 
@@ -10,17 +11,16 @@ class Parentheses {
         generateParenthesis(result, new char[2 * n], n, n, 0);
         return result;
     }
-    
+
     private void generateParenthesis(List<String> res, char[] current, int leftNum, int rightNum, int index) {
         if (leftNum == 0 && rightNum == 0) {
             if (isValid(current)) res.add(new String(current));
-        }
-        else {
+        } else {
             current[index] = '(';
             if (leftNum > 0) generateParenthesis(res, current, leftNum - 1, rightNum, index + 1);
 
             current[index] = ')';
-            if (rightNum > 0 ) generateParenthesis(res, current, leftNum, rightNum - 1, index + 1);
+            if (rightNum > 0) generateParenthesis(res, current, leftNum, rightNum - 1, index + 1);
         }
     }
 
@@ -34,7 +34,7 @@ class Parentheses {
         return open == 0;
     }
 
-    public static void main (String[] args) {
+    public static void main(String[] args) {
         Parentheses parenthesis = new Parentheses();
 
         for (int i = 0; i < 6; i++) {

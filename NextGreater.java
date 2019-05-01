@@ -1,17 +1,15 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class NextGreater {
     public static void main(String[] args) {
-        ArrayList<Integer> data = new ArrayList<Integer>();
-        data.addAll(Arrays.asList(4,5,2,10));
+        ArrayList<Integer> data = new ArrayList<>(Arrays.asList(4, 5, 2, 10));
 
-        Solution s = new Solution();
-        System.out.println(s.nextGreater(data));
+        System.out.println(nextGreater(data));
     }
-}
-class Solution {
-    public ArrayList<Integer> nextGreater(ArrayList<Integer> a) {
-        ArrayList<Integer> res = new ArrayList<Integer>();
+
+    private static ArrayList<Integer> nextGreater(ArrayList<Integer> a) {
+        ArrayList<Integer> res = new ArrayList<>();
         if (a == null || a.isEmpty()) return res;
 
         for (int i = 0; i < a.size(); i++) {

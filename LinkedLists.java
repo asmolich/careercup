@@ -1,26 +1,32 @@
-import java.util.*;
 public class LinkedLists {
     static class ListNode {
         ListNode next = null;
         final int val;
+
         ListNode(int v) {val = v;}
-        ListNode(int v, ListNode n) {val = v;next=n;}
+
+        ListNode(int v, ListNode n) {
+            val = v;
+            next = n;
+        }
+
         @Override
-        public String toString() { return "["+val+']'; }
+        public String toString() { return "[" + val + ']'; }
     }
+
     public static void main(String[] args) {
         LinkedLists lists = new LinkedLists();
         ListNode ones = new ListNode(1, new ListNode(1, new ListNode(1, new ListNode(1, new ListNode(1)))));
         System.out.println(lists.toString(lists.reverseList(ones)));
         System.out.println(lists.toString(lists.deleteDuplicates2(ones)));
         ListNode list = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5)))));
-		list = lists.rotateRight(list, 101);
+        list = lists.rotateRight(list, 101);
         System.out.println(lists.toString(list));
     }
 
     public String toString(ListNode node) {
         StringBuilder sb = new StringBuilder("List[");
-        while(node != null) {
+        while (node != null) {
             sb.append(node.val);
             if (node.next != null) sb.append(", ");
             node = node.next;
@@ -49,15 +55,14 @@ public class LinkedLists {
         while (node != null) {
             if (prev != null && node.val == prev.val) {
                 prev.next = node.next;
-            }
-            else {
+            } else {
                 prev = node;
             }
-                node = node.next;
+            node = node.next;
         }
         return head;
     }
-    
+
     public ListNode deleteDuplicates2(ListNode head) {
         if (head == null) return head;
         ListNode node = head;
@@ -67,12 +72,10 @@ public class LinkedLists {
             if (node.next != null) {
                 if (node.val == node.next.val) {
                     continue;
+                } else {
+                    if (prev != null) prev.next = node.next;
                 }
-                else {
-                    if (prev != null) prev.next = node.next; 
-                }
-            }
-            else {
+            } else {
                 if (prev == null) {
                     return node;
                 }

@@ -1,10 +1,12 @@
-import java.util.*;
+import java.util.Arrays;
+
 public class VersionComp {
-    static class Version implements Comparable<Version>{
+    static class Version implements Comparable<Version> {
         int major = 0;
         int minor = 0;
         int rev = 0;
         int build = 0;
+
         @Override
         public int compareTo(Version v) {
             int res = Integer.compare(major, v.major);
@@ -13,6 +15,7 @@ public class VersionComp {
             if (res == 0) res = Integer.compare(build, v.build);
             return res;
         }
+
         @Override
         public String toString() {
             return "Version[" + major + ", " + minor + ", " + rev + ", " + build + "]";
@@ -32,6 +35,7 @@ public class VersionComp {
             return v;
         }
     }
+
     public int compareVersion(String a, String b) {
         int res = (a == null || a.isEmpty()) ? 1 : 0;
         res += (b == null || b.isEmpty()) ? -1 : 0;
@@ -39,7 +43,8 @@ public class VersionComp {
 
         return Version.valueOf(a).compareTo(Version.valueOf(b));
     }
-    public static void main (String[] args) {
+
+    public static void main(String[] args) {
         VersionComp vc = new VersionComp();
         System.out.println(vc.compareVersion("13.0", "13.0.8"));
     }

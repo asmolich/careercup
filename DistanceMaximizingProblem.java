@@ -1,9 +1,9 @@
-import java.util.*;
+import java.util.Arrays;
 
 public class DistanceMaximizingProblem {
     public static void main(String[] args) {
         DistanceMaximizingProblem dmp = new DistanceMaximizingProblem();
-        System.out.println(dmp.distMax(new int[]{4,3,5,2,1,3,2,3}));
+        System.out.println(dmp.distMax(new int[]{4, 3, 5, 2, 1, 3, 2, 3}));
     }
 
     private int distMax(int[] a) {
@@ -31,12 +31,11 @@ public class DistanceMaximizingProblem {
 
         int maxDiff = 0;
         // Scan both arrays from left to right to find max (j - i)
-        for (int i = 0, j = 0; i < a.length && j < a.length;) {
+        for (int i = 0, j = 0; i < a.length && j < a.length; ) {
             if (loMin[i] <= hiMax[j]) {
                 if (maxDiff < j - i) maxDiff = j - i;
                 j++;
-            }
-            else {
+            } else {
                 i++;
             }
         }

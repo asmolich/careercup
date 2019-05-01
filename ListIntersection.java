@@ -14,13 +14,10 @@ public class ListIntersection {
 
     //Definition for singly-linked list.
     static class ListNode {
-        public int val;
-        public ListNode next;
+        public final int val;
+        public ListNode next = null;
 
-        ListNode(int x) {
-            val = x;
-            next = null;
-        }
+        ListNode(int x) {val = x;}
 
         ListNode(int x, ListNode n) {
             val = x;

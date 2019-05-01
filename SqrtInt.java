@@ -1,4 +1,3 @@
-import java.util.*;
 public class SqrtInt {
     public static void main(String[] args) {
         SqrtInt sqrt = new SqrtInt();
@@ -15,20 +14,19 @@ public class SqrtInt {
         while (lo <= hi) {
             int mid = lo + ((hi - lo) >> 1);
 
-            long sq = (long)mid * mid;
+            long sq = (long) mid * mid;
             if (sq == a) return mid;
             else {
                 if (sq > a) {
                     hi = mid - 1;
-                }
-                else {
+                } else {
                     lo = mid + 1;
 
                     long diff = a - sq;
                     if (closest > diff) {
                         closest = diff;
                         res = mid;
-                    } 
+                    }
                 }
             }
         }

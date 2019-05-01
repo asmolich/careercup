@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.Arrays;
 
 public class IslandMap {
 
@@ -9,7 +9,7 @@ public class IslandMap {
         this.map = map;
     }
 
-    public void  print() {
+    public void print() {
         System.out.println("[");
         for (int i = 0; i < map.length; i++) {
             for (int j = 0; j < map[i].length; j++) {
@@ -57,8 +57,7 @@ public class IslandMap {
                 if (copy[i][j] == 1) {
                     if (count == n) {
                         perimeter += perimeter(copy, i, j);
-                    }
-                    else {
+                    } else {
                         sinkLand(copy, i, j);
                     }
                     count++;
@@ -69,7 +68,7 @@ public class IslandMap {
     }
 
     private void sinkLand(int[][] island, int i, int j) {
-        if (island[i][j] == 0) return; 
+        if (island[i][j] == 0) return;
         island[i][j] = 0;
         if (inBounds(island, i - 1, j)) sinkLand(island, i - 1, j);
         if (inBounds(island, i + 1, j)) sinkLand(island, i + 1, j);
@@ -80,7 +79,7 @@ public class IslandMap {
     private int perimeter(int[][] island, int i, int j) {
         if (island[i][j] == -1) return 0;
         island[i][j] = -1;
-        System.out.println("in (" + i + ", " + j +")");
+        System.out.println("in (" + i + ", " + j + ")");
         int perimeter = 0;
         if (inBounds(island, i - 1, j)) perimeter += island[i - 1][j] == 0 ? 1 : perimeter(island, i - 1, j);
         else perimeter += 1;
@@ -88,9 +87,9 @@ public class IslandMap {
         else perimeter += 1;
         if (inBounds(island, i, j - 1)) perimeter += island[i][j - 1] == 0 ? 1 : perimeter(island, i, j - 1);
         else perimeter += 1;
-        if (inBounds(island, i, j + 1)) perimeter += island[i][j + 1] == 0 ? 1 : perimeter(island, i, j + 1); 
+        if (inBounds(island, i, j + 1)) perimeter += island[i][j + 1] == 0 ? 1 : perimeter(island, i, j + 1);
         else perimeter += 1;
-        return perimeter; 
+        return perimeter;
     }
 
     private boolean inBounds(int[][] island, int i, int j) {
@@ -101,28 +100,28 @@ public class IslandMap {
         int[][][] input = {
             {},
             {
-                {1,1,1},
-                {1,1,1},
-                {1,1,1}
+                {1, 1, 1},
+                {1, 1, 1},
+                {1, 1, 1}
             },
             {
-                {0,0,0},
-                {0,0,0},
-                {0,0,0}
+                {0, 0, 0},
+                {0, 0, 0},
+                {0, 0, 0}
             },
             {
-                {0,1,0,1,0},
-                {1,0,1,1,0},
-                {1,0,0,0,0},
-                {0,1,1,1,0},
-                {1,1,0,1,0}
+                {0, 1, 0, 1, 0},
+                {1, 0, 1, 1, 0},
+                {1, 0, 0, 0, 0},
+                {0, 1, 1, 1, 0},
+                {1, 1, 0, 1, 0}
             },
             {
-                {0,1,0,1,0},
-                {1,1,1,1,0},
-                {1,0,0,1,0},
-                {0,1,1,1,0},
-                {1,1,0,1,0}
+                {0, 1, 0, 1, 0},
+                {1, 1, 1, 1, 0},
+                {1, 0, 0, 1, 0},
+                {0, 1, 1, 1, 0},
+                {1, 1, 0, 1, 0}
             }
         };
         for (int i = 0; i < input.length; i++) {

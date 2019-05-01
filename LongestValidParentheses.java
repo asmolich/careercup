@@ -16,8 +16,8 @@ class IndexPair {
     }
 }
 
-class Solution {
-    public int longestValidParentheses(String s) {
+public class LongestValidParentheses {
+    private static int longestValidParentheses(String s) {
         if (s == null || s.length() < 2) return 0;
 
         //System.out.println(s);
@@ -52,13 +52,10 @@ class Solution {
         }
         return maxLength;
     }
-}
 
-class LongestValidParentheses {
     public static void main(String[] args) {
-        Solution s = new Solution();
-        //System.out.println(s.longestValidParentheses("(()())()((()(())))")); //18
-        System.out.println(s.longestValidParentheses("()(())")); //6
+        System.out.println(longestValidParentheses("(()())()((()(())))")); //18
+        System.out.println(longestValidParentheses("()(())")); //6
     }
 }
 

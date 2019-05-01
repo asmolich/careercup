@@ -1,4 +1,5 @@
-import java.util.*;
+import java.util.Arrays;
+
 public class EditDistance {
     public static void main(String[] args) {
         EditDistance ed = new EditDistance();
@@ -19,7 +20,7 @@ public class EditDistance {
             {"bbbba", "b"}
         };
         for (String[] data : samples) {
-            System.out.println("Distance between \"" + data[0]+ "\" and \"" + data[1] + "\" is " + ed.distance(data[0], data[1]));
+            System.out.println("Distance between \"" + data[0] + "\" and \"" + data[1] + "\" is " + ed.distance(data[0], data[1]));
         }
     }
 
@@ -33,8 +34,8 @@ public class EditDistance {
         int m = s2.length();
         int[][] dp = new int[n + 1][m + 1];
 
-        for (int i = 1; i <= n; dp[i][0] = i++);
-        for (int j = 1; j <= m; dp[0][j] = j++);
+        for (int i = 1; i <= n; dp[i][0] = i++) ;
+        for (int j = 1; j <= m; dp[0][j] = j++) ;
 
         for (int i = 1; i <= n; i++) {
             for (int j = 1; j <= m; j++) {
@@ -54,14 +55,17 @@ public class EditDistance {
             System.out.println((i == 0 ? '_' : s1.charAt(i - 1)) + " | " + Arrays.toString(dp[i]));
         }
 
-        return dp[n][m]; 
+        return dp[n][m];
     }
+
     private int costOfReplace(char a, char b) {
         return a == b ? 0 : 1;
     }
+
     private int costOfInsert(char a, char b) {
         return 1;
     }
+
     private int costOfDelete(char a, char b) {
         return 1;
     }

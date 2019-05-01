@@ -1,5 +1,4 @@
 import java.util.ArrayDeque;
-import java.util.Deque;
 import java.util.Queue;
 
 public class BstIterator {
@@ -16,47 +15,32 @@ public class BstIterator {
         }
     }
 
-    private TreeNode next;
-    private Deque<TreeNode> deq = new ArrayDeque<>();
+    private TreeNode current = null;
+    private TreeNode pred = null;
+    private TreeNode root = null;
 
     public BstIterator(TreeNode root) {
-        TreeNode node = root;
-        while (node != null) {
-            deq.addLast(node);
-            next = node;
-            node = node.left;
-        }
-
-//        System.out.println("Init: deq = " + deq + ", next = " + next);
+        this.root = root;
+        current = root;
+        pred = root;
     }
 
     /**
-     * @return whether we have a next smallest number
+     * @return whether we have a current smallest number
      */
     public boolean hasNext() {
-//        System.out.println("deq = " + deq + ", next = " + next);
-        return next.right != null || !deq.isEmpty();
+        return current != null;
     }
 
     /**
-     * @return the next smallest numberPurchaseProductMoneyRequestMessage
+     * @return the current smallest number
      */
     public int next() {
-        //System.out.println(next);
-        if (next.right == null) {
-            next = deq.removeLast();
-        } else {
-            TreeNode node = next.right;
-            while (node != null) {
-                deq.add(node);
-                node = node.left;
-            }
-            if (!deq.isEmpty())
-                next = deq.removeLast();
-        }
-        return next.val;
+        int result = current.val;
+        return result;
     }
 
+    @SuppressWarnings("Duplicates")
     private static TreeNode buildBstFromLevelOrder(Integer[] order) {
         if (order == null || order.length == 0) return null;
         TreeNode head = null;
@@ -77,49 +61,13 @@ public class BstIterator {
             if (node != null) parents.add(node);
         }
 
-//        while (!parents.isEmpty()) {
-//            if (left) parents.peek().left = null;
-//            else parents.poll().right = null;
-//            left = !left;
-//        }
+        while (!parents.isEmpty()) {
+            if (left) parents.peek().left = null;
+            else parents.poll().right = null;
+            left = !left;
+        }
 
         return head;
-    }
-
-    static class NullNode extends TreeNode {
-        NullNode(int x) {
-            super(x);
-        }
-    }
-
-    /**
-     * 297. Serialize and Deserialize Binary Tree
-     * https://leetcode.com/problems/serialize-and-deserialize-binary-tree
-     */
-    public static String toString(TreeNode head) {
-        if (head == null) return "null";
-
-        Queue<TreeNode> q = new ArrayDeque<>();
-        q.add(head);
-
-        Queue<String> res = new ArrayDeque<>();
-        while (!q.isEmpty()) {
-            TreeNode node = q.poll();
-
-            if (node instanceof NullNode) {
-                res.add("null");
-                continue;
-            } else {
-                res.add(String.valueOf(node.val));
-            }
-
-            if (node.left != null) q.add(node.left);
-            else q.add(new NullNode(-1));
-            if (node.right != null) q.add(node.right);
-            else q.add(new NullNode(-1));
-        }
-
-        return String.join(",", res);
     }
 
     private static void inOrder(TreeNode node) {
@@ -132,14 +80,11 @@ public class BstIterator {
     }
 
     public static void main(String[] args) {
-        TreeNode root = buildBstFromLevelOrder(new Integer[]{4, 2, 6, 1, 3, null, 7, null, null, null, null, null, null});
-        //TreeNode root = buildBstFromLevelOrder(new Integer[]{4, 2, 6, 1, 3, null, 7});
+        TreeNode root = buildBstFromLevelOrder(new Integer[]{4, 2, 6, 1, 3, null, 7});
 
         System.out.print("In Order = ");
         inOrder(root);
         System.out.println();
-
-        System.out.println("To String = " + toString(root));
 
         BstIterator i = new BstIterator(root);
         while (i.hasNext()) {

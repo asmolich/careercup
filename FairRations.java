@@ -14,7 +14,7 @@ public class FairRations {
         int count = 0;
         int odds = 0;
 
-        //for (int value : a) if (value % 2 == 1) odds++;
+        //for (int val : a) if (val % 2 == 1) odds++;
 
         int firstOdd = -1;
         for (int i = 0; i < a.length; i++) {
@@ -22,8 +22,7 @@ public class FairRations {
                 odds++;
                 if (firstOdd == -1) {
                     firstOdd = i;
-                }
-                else {
+                } else {
                     System.out.println("firstOdd = " + firstOdd + ", i = " + i);
                     count += (i - firstOdd) << 1;
                     firstOdd = -1;

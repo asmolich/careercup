@@ -1,4 +1,8 @@
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+
 public class Snake {
     public static void main(String[] args) {
         char[][] data = new char[][]{
@@ -10,7 +14,7 @@ public class Snake {
         for (char[] row : data)
             System.out.println(Arrays.toString(row));
         System.out.println();
-        
+
         Snake s = new Snake();
         System.out.println(s.find(data, test));
     }
@@ -18,10 +22,12 @@ public class Snake {
     class Pair {
         int a;
         int b;
+
         Pair(int a, int b) {
             this.a = a;
             this.b = b;
         }
+
         @Override
         public String toString() { return "[" + a + ", " + b + "]"; }
     }
@@ -44,8 +50,8 @@ public class Snake {
     }
 
     private void dfs(char[][] data, int i, int j, String test, int index, LinkedList<Pair> result) {
-        if (index >= test.length() || i < 0 || j < 0 || i >= data.length || j >= data[i].length || 
-                data[i][j] != test.charAt(index)) {
+        if (index >= test.length() || i < 0 || j < 0 || i >= data.length || j >= data[i].length ||
+            data[i][j] != test.charAt(index)) {
             return;
         }
         if (data[i][j] == test.charAt(index)) {

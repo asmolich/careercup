@@ -14,6 +14,8 @@ e.g.
 8 13
 16
 """
+
+
 def intersected_lists(list_of_lists):
     k = 1000
     uf = [None for i in range(k)]
@@ -33,13 +35,14 @@ def intersected_lists(list_of_lists):
 
     print uf
     print result
-    #for h, v in result:
+    # for h, v in result:
     #    print v
 
+
 intersected_lists([
-    [1,2,3,4,5],
-    [6,7,88,4,5],
-    [8,9,10,11,12],
-    [13,14,15,12],
-    [16,17,18]
-    ])
+    [1, 2, 3, 4, 5],
+    [6, 7, 88, 4, 5],
+    [8, 9, 10, 11, 12],
+    [13, 14, 15, 12],
+    [16, 17, 18]
+])

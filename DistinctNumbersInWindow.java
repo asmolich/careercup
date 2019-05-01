@@ -1,10 +1,12 @@
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DistinctNumbersInWindow {
-    public int[] distinctNums(int[] a, int b) {
+    private int[] distinctNums(int[] a, int b) {
         if (a == null || b < 1) return new int[0];
 
-        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>(b);
+        Map<Integer, Integer> map = new HashMap<>(b);
         int i = 0;
         int bound = Math.min(b, a.length);
         for (; i < bound; i++) {
@@ -23,7 +25,7 @@ public class DistinctNumbersInWindow {
             if (count == null) count = 0;
             if (count <= 1)
                 map.remove(aj1);
-            else 
+            else
                 map.put(aj1, count - 1);
 
             count = map.get(ai);
@@ -31,7 +33,7 @@ public class DistinctNumbersInWindow {
             map.put(ai, count + 1);
 
             res[j] = map.keySet().size();
-    
+
             j++;
         }
         return res;

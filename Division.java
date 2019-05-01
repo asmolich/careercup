@@ -1,3 +1,7 @@
+/**
+ * LeetCode
+ * 29. Divide Two Integers. https://leetcode.com/problems/divide-two-integers/
+ */
 class Division {
 
     public static void main(String[] args) {
@@ -5,12 +9,12 @@ class Division {
         System.out.println(divide(Integer.MIN_VALUE, Integer.MAX_VALUE));
         System.out.println(divide(Integer.MIN_VALUE, Integer.MIN_VALUE));
 
-//        System.out.println(divide(2147483647, 2));
-//        System.out.println(divide(-2147483647, -2));
+        System.out.println(divide(2147483647, 2));
+        System.out.println(divide(-2147483647, -2));
         System.out.println(divide(2147483647, 1));
     }
 
-    public static int divide(int dividend, int divisor) {
+    private static int divide(int dividend, int divisor) {
         if (dividend == Integer.MIN_VALUE) {
             if (divisor == 1) return Integer.MIN_VALUE;
             if (divisor == -1) return Integer.MAX_VALUE;
@@ -34,8 +38,8 @@ class Division {
         if (dividend == divisor) return 1;
         System.out.println("dividePositive call, dividend = " + dividend + ", divisor = " + divisor);
         int result = 0;
-        int tempDivisor = divisor;
-        int count = 0;
+        int tempDivisor;
+        int count;
 
         while (dividend >= divisor) {
             System.out.println("dividend =" + dividend + ", divisor = " + divisor);
@@ -60,8 +64,8 @@ class Division {
         if (dividend == divisor) return 1;
         System.out.println("divideNegative call, dividend = " + dividend + ", divisor = " + divisor);
         int result = 0;
-        int tempDivisor = divisor;
-        int count = 0;
+        int tempDivisor;
+        int count;
 
         while (dividend <= divisor) {
             tempDivisor = divisor;

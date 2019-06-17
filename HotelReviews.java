@@ -3,17 +3,23 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Deque;
 import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+/**
+ * InterviewBit. Hotel Reviews. https://www.interviewbit.com/problems/hotel-reviews/
+ */
 public class HotelReviews {
     public static void main(String[] args) {
         System.out.println(new HotelReviews().solve("cool_ice_wifi", new ArrayList<>(Arrays.asList("water_is_cool", "cold_ice_drink", "cool_wifi_speed"))));
         System.out.println(new HotelReviews().solve("play_boy", new ArrayList<>(Arrays.asList("smart_guy", "girl_and_boy_play", "play_ground"))));
+
+        System.out.println(new HotelReviews().solve("cool_ice_wifi_car", new ArrayList<>(Arrays.asList("water_is_cool", "cold_ice_drink", "cool_wifi_speed"))));
     }
 
-    public ArrayList<Integer> solve(String s, ArrayList<String> r) {
-        ArrayList<Integer> result = new ArrayList<Integer>();
+    private ArrayList<Integer> solve(String s, ArrayList<String> r) {
+        ArrayList<Integer> result = new ArrayList<>();
         if (s == null || s.isEmpty() || r == null || r.isEmpty()) return result;
 
         TrieNode head = buildTrie(s);
@@ -43,56 +49,56 @@ public class HotelReviews {
             //System.out.println(node);
             if (node != null && node.isTerminal)
                 order.put(index, order.get(index) + 1);
-            index++;
 
             node = head;
+            index++;
         }
         System.out.println("order = " + order);
         System.out.println("============");
 
-        return new ArrayList<>(
-            order.entrySet()
-                .stream()
-                .sorted((a, b) -> -Integer.compare(a.getValue(), b.getValue()))
-                .map(e -> e.getKey())
-                .collect(Collectors.toList())
-        );
+        return order.entrySet()
+            .stream()
+            .sorted((a, b) -> -Integer.compare(a.getValue(), b.getValue()))
+            .map(Map.Entry::getKey)
+            .collect(Collectors.toCollection(ArrayList::new));
     }
 
-    public TrieNode buildTrie(String s) {
+    private TrieNode buildTrie(String s) {
         TrieNode head = new TrieNode();
         TrieNode parent = head;
         TrieNode node = null;
         System.out.println("s=" + s);
         for (int i = 0; i < s.length(); i++) {
-            if (s.charAt(i) == '_') {
+            final char ch = s.charAt(i);
+            if (ch == '_') {
                 parent.isTerminal = true;
                 parent = head;
                 continue;
             }
-            node = new TrieNode();
-            parent.children[s.charAt(i) - 'a'] = node;
+            node = parent.children[ch - 'a'];
+            if (node == null) node = new TrieNode();
+            parent.children[ch - 'a'] = node;
             parent = node;
         }
-        node.isTerminal = true;
+        if (node != null) node.isTerminal = true;
         return head;
     }
 
-    void printTrie(TrieNode head) {
+    private void printTrie(TrieNode head) {
         Deque<TrieNode> q = new ArrayDeque<>();
         q.addLast(head);
         while (!q.isEmpty()) {
             TrieNode node = q.pollLast();
             System.out.println(node);
             for (int i = 0; i < 26; i++) {
-                if (node.children[i] != null) {
+                if (node != null && node.children[i] != null) {
                     q.addLast(node.children[i]);
                 }
             }
         }
     }
 
-    class TrieNode {
+    static class TrieNode {
         TrieNode[] children = new TrieNode[26];
         boolean isTerminal = false;
 
@@ -108,4 +114,3 @@ public class HotelReviews {
         }
     }
 }
-

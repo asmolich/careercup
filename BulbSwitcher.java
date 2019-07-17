@@ -1,7 +1,7 @@
-import java.util.Arrays;
-
 /**
- * LeetCode. Bulb Switcher. https://leetcode.com/problems/bulb-switcher/description/
+ * LeetCode
+ * 319. Bulb Switcher
+ * https://leetcode.com/problems/bulb-switcher/
  *
  * <p>
  * There are n bulbs that are initially off. You first turn on all the bulbs. Then, you turn off every second bulb.
@@ -26,7 +26,7 @@ import java.util.Arrays;
 public class BulbSwitcher {
     public static void main(String[] args) {
         for (int n = 1; n < 1000; n++) {
-            System.out.printf("%2d - %d - %d%n", n, (int)(Math.sqrt(n)), bulbSwitch(n));
+            System.out.printf("%2d - %d - %d%n", n, (int) (Math.sqrt(n)), bulbSwitch(n));
         }
     }
 

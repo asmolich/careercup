@@ -1,0 +1,208 @@
+/*
+Write an algorithm that returns an array of "auto complete" suggestions when the beginning of a search phrase is provided. For example, "Gam" would return "Game of Thrones" and "Game Day", but not "Endgame". The algorithm should be designed to handle a catalog of between 5,000 and 500,000 titles.
+
+
+Example Catalog:
+Any Given Sunday
+Bicentennial Man
+Cast Away
+Endgame
+Flight of the Conchords
+Funny Games
+Game Day
+Game of Thrones
+Marley & Me
+The Breakfast Club
+*/
+
+
+import java.io.*;
+import java.util.*;
+import java.util.stream.*;
+
+class TrieNode {
+
+  TrieNode[] children = new TrieNode[26 + 2]; // 2 for & and -
+  boolean isTerminal = false;
+  //List<String> autoComplete = new ArrayList<>();
+
+  @Override
+  public String toString(){
+    StringBuilder sb = new StringBuilder("{");
+    for (int i = 0; i < children.length; i++) {
+      if (children[i] != null) {
+        if (i == 26) sb.append('&');
+        else if (i == 27) sb.append('-');
+        else sb.append((char)('a' + i));
+      }
+    }
+    if (isTerminal) sb.append(", terminal");
+    //if (!autoComplete.isEmpty()) sb.append(", ac=").append(autoComplete);
+    sb.append('}');
+    return sb.toString();
+  }
+}
+
+public class Solution {
+
+  public static void print(TrieNode root) {
+    if (root == null) {
+      System.out.println("null");
+      return;
+    }
+    Deque<TrieNode> deq = new ArrayDeque<>();
+    deq.add(root);
+    while (!deq.isEmpty()) {
+      TrieNode node = deq.removeLast();
+      System.out.println(node);
+      for (TrieNode ch : node.children){
+        if (ch != null) deq.addLast(ch);
+      }
+    }
+  }
+
+
+  public static TrieNode buildTrie(List<String> catalog) {
+    if (catalog == null || catalog.isEmpty()) return null;
+
+    TrieNode root = null;
+    for (String catalogEntry : catalog) {
+      TrieNode localRoot = root;
+      for (int i = 0; i < catalogEntry.length(); i++) {
+        char ch = catalogEntry.charAt(i);
+        if (ch == ' ') continue;
+
+        if (localRoot == null) localRoot = new TrieNode();
+        if (root == null && localRoot != null) root = localRoot;
+
+        TrieNode node = new TrieNode();
+        if (ch == '&') {
+          if (localRoot.children[26] == null) {
+            localRoot.children[26] = node;
+            localRoot = node;
+          }
+          else localRoot = localRoot.children[26];
+        }
+        else if (ch == '-') {
+          if (localRoot.children[27] == null) {
+            localRoot.children[27] = node;
+            localRoot = node;
+          }
+          else localRoot = localRoot.children[27];
+        }
+        else {
+          if (ch >= 'A' && ch <= 'Z') {
+            ch = Character.toLowerCase(ch);
+          }
+          if (localRoot.children[ch - 'a'] == null) {
+            localRoot.children[ch - 'a'] = node;
+            localRoot = node;
+          }
+          else localRoot = localRoot.children[ch - 'a'];
+        }
+
+        if (i == catalogEntry.length() - 1) localRoot.isTerminal = true;
+      }
+    }
+
+    return root;
+  }
+
+  private static List<StringBuilder> collect(TrieNode node, StringBuilder sb) {
+    List<StringBuilder> result = new ArrayList<>();
+    if (node.isTerminal) {
+      result.add(sb);
+    }
+
+    boolean hasChildren = false;
+    for (int i = 0; i < node.children.length; i++) {
+      if (node.children[i] != null) {
+        hasChildren = true;
+        if (i == 26) sb.append('&');
+        else if (i == 27) sb.append('-');
+        else sb.append((char)('a' + i));
+        List<StringBuilder> list = collect(node.children[i], sb);
+        if (list != null && !list.isEmpty()) result.addAll(list);
+      }
+    }
+    return result;
+  }
+
+  public static List<String> query(TrieNode root, String query) {
+    if (root == null || query == null || query.isEmpty())
+      return Collections.emptyList();
+
+    TrieNode queryNode = query0(root, query.toCharArray(), 0);
+
+    List<String> result = new ArrayList<>();
+    if (queryNode == null) return Collections.emptyList();
+
+    StringBuilder res = new StringBuilder(query.substring(0, query.length() - 1));
+
+    return collect(queryNode, res).stream()
+      .map(StringBuilder::toString).collect(Collectors.toList());
+  }
+
+  private static TrieNode query0(TrieNode node, char[] query, int i) {
+    if (node == null || i >= query.length) return null;
+
+    if (i == query.length - 1) {
+      return node;
+    }
+    else {
+      char ch = query[i];
+      if (ch == ' ') {
+        return query0(node, query, i + 1);
+      }
+      else if (ch == '&') {
+        return query0(node.children[26], query, i + 1);
+      }
+      else if (ch == '-') {
+        return query0(node.children[27], query, i + 1);
+      }
+      else {
+        if (ch >= 'A' && ch <= 'Z') {
+          ch = Character.toLowerCase(ch);
+        }
+        return query0(node.children[ch - 'a'], query, i + 1);
+      }
+    }
+  }
+
+  public static void main(String[] args) {
+    // TrieNode node = new TrieNode();
+    // TrieNode a = new TrieNode();
+    // node.children[1] = a;
+    // a.isTerminal = true;
+    // print(node);
+
+
+    TrieNode root = buildTrie(Arrays.asList(
+      "Any Given Sunday",
+      "Bicentennial Man",
+      "Cast Away",
+      "Endgame",
+      "Flight of the Conchords",
+      "Funny Games",
+      "Game Day",
+      "Game of Thrones",
+      "Marley & Me",
+      "The Breakfast Club"
+      ));
+
+
+    print(root);
+
+    System.out.println("***********");
+    System.out.println(query(root, "game"));
+    System.out.println("***********");
+    System.out.println(query(root, ""));
+    System.out.println("***********");
+    System.out.println(query(root, "qwe"));
+    System.out.println("***********");
+    System.out.println(query(root, "any"));
+    System.out.println("***********");
+
+  }
+}
+

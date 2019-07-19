@@ -1,0 +1,85 @@
+Welcome to Facebook!
+
+This is just a simple shared plaintext pad, with no execution capabilities.
+
+When you know what language you'd like to use for your interview,
+simply choose it from the dropdown in the top bar.
+
+Enjoy your interview!
+
+
+// 12 ==> number a
+// 12 ==> number b 
+// 144
+
+
+// a ==> any size digits ( >= 100K)
+// b ==> any size digits
+  
+// 12
+// 12
+
+12
+ 24
+144
+// ""
+  
+// a ==>  n digits long
+// a ==>  c = n/2 upper part, d = n/2 lower part
+
+// a = c * 10^(n/2) + d
+// b = x * 10^(n/2) + y
+// a * b = (c*x) * 10^n + (x*d+c*y)*10^(n/2) + d*y
+// 
+
+String multiply(String a, String b) {// 12,12
+  if (a == null || b == null || a.length() == 0 || b.length() == 0) return null;
+  int n = Math.max(a.length(), b.length()); //2
+  
+  if (n < 12) // TODO: check threshhold
+    //fits into long 
+    return String.valueOf(Integer.parseInt(a)*Integer.parseInt(b));
+  
+  String la = left(a, n/2);  //1
+  String ra = right(a, n/2); //2
+  String lb = left(b, n/2);  //1
+  String rb = right(b, n/2); //2
+  
+  
+  //multiply(la, lb) = 1
+  //multiply(ra, lb) = 2
+  //multiply(la, rb) = 2
+  //multiply(ra, rb) = 4
+
+  return sum(
+    sum(
+        shift(multiply(la, lb), n),
+        shift(sum(multiply(ra, lb), multiply(la, rb)), n/2)
+    ),
+    multiply(ra, rb)
+    );
+}
+
+String sum(String a, String b) {
+  int n = Math.max(a.length(), b.length());
+  char[] res = new char[n + 1];
+  boolean overflow = false;
+  for (int i = 0; i < n; i++) {
+    char sum = a.charAt(a.length() - 1 - i) + b.charAt(a.length() - 1 - i) + (char)(overflow ? 1 : 0);
+    if (sum > '9') {
+      sum -= 10;
+      overflow = true;
+    }
+    res[n - i] = sum;
+  }
+  return new String(res);
+}
+
+String left(String a, int n) {
+  return a.substring(0, a.length() - n);// check for off-by-one
+}
+
+String right(String a, int n) {
+  return a.substring(n);
+}
+

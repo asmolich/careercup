@@ -5,7 +5,6 @@ import java.util.List;
 
 /**
  * InterviewBit. MAXSPPROD. https://www.interviewbit.com/problems/maxspprod/
- *
  */
 public class MaxSpecialProduct {
     public static void main(String[] args) {

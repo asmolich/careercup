@@ -1,0 +1,145 @@
+import java.io.*;
+import java.util.*;
+
+/*
+Suppose we have some input data describing a graph of relationships between parents and children over multiple generations. The data is formatted as a list of (parent, child) pairs, where each individual is assigned a unique integer identifier.
+
+For example, in this diagram, 6 and 8 have a common ancestor of 4.
+
+1   2   4
+ \ /   / \
+  3   5   8
+   \ / \   \
+    6   7   10
+
+parentChildPairs1 = [
+    (1, 3), (2, 3), (3, 6), (5, 6),
+    (5, 7), (4, 5), (4, 8), (8, 10)
+]
+
+Write a function that takes the graph, as well as two of the individuals in our dataset, as its inputs and returns true if and only if they share at least one ancestor.
+
+Sample input and output:
+
+hasCommonAncestor(parentChildPairs1, 3, 8) => false
+hasCommonAncestor(parentChildPairs1, 5, 8) => true
+hasCommonAncestor(parentChildPairs1, 6, 8) => true
+hasCommonAncestor(parentChildPairs1, 1, 3) => false
+hasCommonAncestor(parentChildPairs1, 6, 5) => true
+
+Additional example: In this diagram, 4 and 8 have a common ancestor of 10.
+
+      10
+     /  \
+1   2    5
+ \ /    / \
+  3    6   7
+   \        \
+    4        8
+
+parentChildPairs2 = [
+    (10, 2), (10, 5), (1, 3), (2, 3),
+    (3, 4), (5, 6), (5, 7), (7, 8)
+]
+
+hasCommonAncestor(parentChildPairs2, 4, 8) => true
+hasCommonAncestor(parentChildPairs2, 1, 6) => false
+
+ */
+
+class Solution {
+  public static void main(String[] args) {
+    int[][] parentChildPairs = new int[][] {
+        {1, 3}, {2, 3}, {3, 6}, {5, 6}, {5, 7},
+        {4, 5}, {4, 8}, {8, 10}
+    };
+
+
+    int[][] parentChildPairs1 = new int[][] {
+        {1, 3}, {2, 3}, {3, 6}, {5, 6}, {5, 7},
+        {4, 5}, {4, 8}, {8, 10}
+    };
+
+    int[][] parentChildPairs2 = new int[][] {
+        {10, 2}, {10, 5}, {1, 3}, {2, 3},
+        {3, 4}, {5, 6}, {5, 7}, {7, 8}
+    };
+
+
+
+    System.out.println(findNodesWithZeroAndOneParents(parentChildPairs));
+  }
+
+
+  static boolean hasCommonAncestor(int[][] parentChildPairs, int a, int b) {
+
+    if (parentChildPairs == null || parentChildPairs.length == 0) return Collections.emptyList();
+
+    Map<Integer, Set<Integer>> adj = new HashMap<>();
+
+    for (int i = 0; i < parentChildPairs.length; i++) {
+      int parent = parentChildPairs[i][0];
+      int child = parentChildPairs[i][1];
+      adj.putIfAbsent(parent, new HashSet());
+      Set<Integer> parents = adj.getOrDefault(child, new HashSet());
+      parents.add(parent);
+      adj.put(child, parents);
+    }
+
+
+
+    // a = 4
+    // b = 8
+    Set<Integer> ancestorsOfA = new HashSet<>();
+    Queue<Integer> q = new ArrayDeque<>();
+    List<Integer> adjecend = adj.get(a);
+    if (adjecend == null || adjecend.isEmpty()) return false;
+
+    q.addAll(adjecend);
+    while(!q.isEmpty()) {
+      Integer current = q.poll();
+
+    }
+
+
+  }
+
+
+
+
+
+  public static List<List<Integer>> findNodesWithZeroAndOneParents(int[][] parentChildPairs) {
+    if (parentChildPairs == null || parentChildPairs.length == 0) return Collections.emptyList();
+
+    // 1 -> []
+    // 2 -> []
+    // 3 -> [1, 3]
+    // 4 -> []
+
+    Map<Integer, Set<Integer>> adj = new HashMap<>();
+
+    for (int i = 0; i < parentChildPairs.length; i++) {
+      int parent = parentChildPairs[i][0];
+      int child = parentChildPairs[i][1];
+      adj.putIfAbsent(parent, new HashSet());
+      Set<Integer> parents = adj.getOrDefault(child, new HashSet());
+      parents.add(parent);
+      adj.put(child, parents);
+    }
+
+    //System.out.println(adj);
+
+    List<Integer> zeroParents = new ArrayList<>();
+    List<Integer> oneParent = new ArrayList<>();
+
+    adj.forEach((key,v) -> {
+      if (v.size() == 0) zeroParents.add(key);
+      if (v.size() == 1) oneParent.add(key);
+    });
+
+    List<List<Integer>> result = new ArrayList<>();
+    result.add(zeroParents);
+    result.add(oneParent);
+    return result;
+  }
+}

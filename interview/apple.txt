@@ -1,0 +1,77 @@
+import java.io.*;
+import java.util.*;
+
+/**
+merge([ (2,5), (1,4) ]) --> [ (1,5) ]
+merge([ (2,5), (1,4), (6,8), (7,9) ]) —> [ (1,5), (6,9) ]
+
+merge([ (1,4), (2,5), (6,8), (7,9) ]) —> [ (1,5), (6,9) ]
+
+(1,5)(5,6)
+
+start < end
+*/
+
+class Range {
+  public final int start;
+  public final int end;
+
+  public Range(int start, int end) {
+    this.start = start;
+    this.end = end;
+  }
+
+  public String toString() {
+    return "(" + start + "," + end + ")";
+  }
+}
+
+class Solution {
+  public static void main(String[] args) {
+    System.out.println(merge(Arrays.asList(
+                             new Range(2,5), new Range(1,4)
+                            )));
+    System.out.println(merge(Arrays.asList(
+      new Range(2,5), new Range(1,4), new Range(6,8), new Range(7,9)
+                            )));
+    
+        System.out.println(merge(Arrays.asList(
+      new Range(1,4), new Range(4,5), new Range(5,8), new Range(7,9)
+                            )));
+    System.out.println(merge(Arrays.asList(
+                             new Range(2,3), new Range(1,4)
+                            )));
+    
+    // (1,4) (2,3)
+  }
+  
+  public static List<Range> merge(List<Range> ranges) {
+    if (ranges == null || ranges.isEmpty()) return Collections.emptyList();
+    
+    Collections.sort(ranges, (a, b) -> Integer.compare(a.start, b.start));
+    
+    List<Range> result = new ArrayList<>();
+    Range prev = null;
+    for (Range range : ranges) {
+      if (prev == null) {
+        prev = range;
+        continue;
+      }
+
+      if (range.start <= prev.end) {
+        // overlap
+        Range resultRange = new Range(prev.start, Math.max(range.end, prev.end));
+        prev = resultRange;
+      }
+      else {
+        result.add(prev);
+        prev = range;
+      }
+    }
+    
+    result.add(prev);
+    
+    return result;
+  }
+}
+

@@ -1,8 +1,11 @@
+/**
+ * LeetCode. 4. Median of Two Sorted Arrays. https://leetcode.com/problems/median-of-two-sorted-arrays/
+ */
 public class Median {
-    public static void main(String[] aggs) {
+    public static void main(String[] args) {
         Median m = new Median();
         int[] a = new int[]{1, 2, 3, 4, 5, 6};
-        int[] b = new int[]{7, 8, 9, 10};
+        int[] b = new int[]{1, 2, 3, 7, 8, 9, 10};
         System.out.println("1. median = " + m.medianNaive(a, b));
         System.out.println("2. median = " + m.median(a, b));
     }

@@ -1,4 +1,5 @@
 import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,7 +12,7 @@ public class RedundantBraces {
         System.out.println("\"" + ex2 + "\"" + (rb.hasRedundantBraces(ex2) ? " has " : " doesn't have ") + "redundant braces");
     }
 
-    private static final Set<Character> validChars = new HashSet<Character>(5);
+    private static final Set<Character> validChars = new HashSet<>(5);
 
     static {
         validChars.add('(');
@@ -21,16 +22,15 @@ public class RedundantBraces {
         validChars.add('/');
     }
 
-    public boolean hasRedundantBraces(String s) {
-        ArrayDeque<Character> stack = new ArrayDeque<Character>();
+    private boolean hasRedundantBraces(String s) {
+        Deque<Character> stack = new ArrayDeque<>();
         for (int i = 0; i < s.length(); i++) {
             char ch = s.charAt(i);
             if (validChars.contains(ch)) {
                 stack.addLast(ch);
             } else if (ch == ')') {
-                Character c;
                 boolean hasOp = false;
-                while ((c = stack.removeLast()) != '(') {
+                while (stack.removeLast() != '(') {
                     hasOp = true;
                 }
                 if (!hasOp) return true;

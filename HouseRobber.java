@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 /**
  * LeetCode. 198. House Robber
  * https://leetcode.com/problems/house-robber/
@@ -14,10 +12,14 @@ public class HouseRobber {
         if (nums == null || nums.length == 0) return 0;
 
         int n = nums.length;
-        int[] value = new int[n + 2];
+        int value = 0;
+        int prevPrev = 0;
+        int prev = 0;
         for (int i = 2; i < n + 2; i++) {
-            value[i] = Math.max(value[i - 1], value[i - 2] + nums[i - 2]);
+            value = Math.max(prev, prevPrev + nums[i - 2]);
+            prevPrev = prev;
+            prev = value;
         }
-        return value[n + 1];
+        return value;
     }
 }

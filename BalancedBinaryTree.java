@@ -50,10 +50,12 @@ public class BalancedBinaryTree {
         if (node == null) return new State();
 
         State left = isBalanced0(node.left);
+        if (!left.balanced) return left;
         State right = isBalanced0(node.right);
+        if (!right.balanced) return right;
 
         State state = new State();
-        state.balanced = left.balanced && right.balanced && (Math.abs(left.height - right.height) <= 1);
+        state.balanced = Math.abs(left.height - right.height) <= 1;
         state.height = 1 + Math.max(left.height, right.height);
         return state;
     }

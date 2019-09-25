@@ -37,9 +37,7 @@ public class MaximumDepthOfBinaryTree {
         if (node == null) return 0;
         if (node.left == null && node.right == null) return 1;
 
-        int minLeft = maxDepth(node.left);
-        int minRight = maxDepth(node.right);
-        return 1 + Math.max(minLeft, minRight);
+        return 1 + Math.max(maxDepth(node.left), maxDepth(node.right));
     }
 
     private static TreeNode buildBstFromLevelOrder(Integer[] order) {

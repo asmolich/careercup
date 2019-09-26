@@ -2,6 +2,7 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.PriorityQueue;
@@ -89,8 +90,8 @@ public class Tree {
 
         System.out.println("Construct from: ");
         lvlOrder = new int[]{
-            621367, 400139, 986434, 318453, 562082, 727076, -1, 208016, 340383, 409269, -1, 702531, 983736, 187691, -1, -1, 387077, -1,
-            534779, 647033, 719463, 824451, -1, -1, -1, 373900, -1, 517606, -1, -1, -1, -1, 720965, -1, 834145, -1, -1, -1, -1, -1, -1, -1, -1
+                621367, 400139, 986434, 318453, 562082, 727076, -1, 208016, 340383, 409269, -1, 702531, 983736, 187691, -1, -1, 387077, -1,
+                534779, 647033, 719463, 824451, -1, -1, -1, 373900, -1, 517606, -1, -1, -1, -1, 720965, -1, 834145, -1, -1, -1, -1, -1, -1, -1, -1
         };
         System.out.println(Arrays.toString(lvlOrder));
         System.out.println("Result:");
@@ -236,7 +237,7 @@ public class Tree {
         if (root == null) return Collections.emptyList();
 
         List<TreeNode> traversal = new ArrayList<>();
-        ArrayDeque<TreeNode> nodes = new ArrayDeque<>();
+        Deque<TreeNode> nodes = new ArrayDeque<>();
         nodes.addLast(root);
         while (!nodes.isEmpty()) {
             TreeNode node = nodes.removeFirst();

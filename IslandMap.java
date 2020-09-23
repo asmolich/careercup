@@ -11,9 +11,9 @@ public class IslandMap {
 
     public void print() {
         System.out.println("[");
-        for (int i = 0; i < map.length; i++) {
-            for (int j = 0; j < map[i].length; j++) {
-                System.out.print(map[i][j] + ", ");
+        for (int[] isle : map) {
+            for (int elem : isle) {
+                System.out.print(elem + ", ");
             }
             System.out.println();
         }
@@ -124,11 +124,11 @@ public class IslandMap {
                 {1, 1, 0, 1, 0}
             }
         };
-        for (int i = 0; i < input.length; i++) {
-            IslandMap im = new IslandMap(input[i]);
+        for (int[][] ints : input) {
+            IslandMap im = new IslandMap(ints);
             im.print();
             System.out.println("Number of islands = " + im.findNumberOfIslands());
-            System.out.println("Permeter of island 1 = " + im.perimeterOfIsland(0));
+            System.out.println("Perimeter of island 1 = " + im.perimeterOfIsland(0));
             System.out.println("Area of island 1 = " + im.perimeterOfIsland(0));
             System.out.println("=====================");
         }

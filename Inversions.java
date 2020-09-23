@@ -17,7 +17,7 @@ public class Inversions {
         System.out.println(Arrays.toString(d));
     }
 
-    class Pair {
+    static class Pair {
         int a = 0;
         int b = 0;
 
@@ -90,9 +90,7 @@ public class Inversions {
             }
         }
 
-        for (int k = i; k <= j; k++) {
-            a[k] = aux[k];
-        }
+        if (j + 1 - i >= 0) System.arraycopy(aux, i, a, i, j + 1 - i);
 
         //int[] t = new int[j-i+1];
         //System.arraycopy(a, i, t, 0, j-i+1);

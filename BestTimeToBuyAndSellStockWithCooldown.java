@@ -7,10 +7,15 @@ public class BestTimeToBuyAndSellStockWithCooldown {
 
     public static void main(String[] args) {
         System.out.println(maxProfit(new int[]{1, 2, 3, 0, 2})); // 3
+        System.out.println(maxProfitSpaceOptimal(new int[]{1, 2, 3, 0, 2})); // 3
         System.out.println(maxProfit(new int[]{1, 3, 1, 5, 1, 6})); // 7
+        System.out.println(maxProfitSpaceOptimal(new int[]{1, 3, 1, 5, 1, 6})); // 7
         System.out.println(maxProfit(new int[]{1, 2, 4})); // 3
+        System.out.println(maxProfitSpaceOptimal(new int[]{1, 2, 4})); // 3
         System.out.println(maxProfit(new int[]{6, 1, 3, 2, 4, 7, 6})); // 6
+        System.out.println(maxProfitSpaceOptimal(new int[]{6, 1, 3, 2, 4, 7, 6})); // 6
         System.out.println(maxProfit(new int[]{6, 1, 3, 2, 4, 7, 6, 1, 3, 2, 4, 7})); // 12
+        System.out.println(maxProfitSpaceOptimal(new int[]{6, 1, 3, 2, 4, 7, 6, 1, 3, 2, 4, 7})); // 12
     }
 
     private static int maxProfitSpaceOptimal(int[] prices) {
@@ -25,7 +30,6 @@ public class BestTimeToBuyAndSellStockWithCooldown {
             sold = hold + price;
             hold = Math.max(hold, rest - price);
             rest = Math.max(rest, prevSold);
-
         }
         return Math.max(rest, sold);
     }

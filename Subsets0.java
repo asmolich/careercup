@@ -3,7 +3,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
-public class Subsets {
+public class Subsets0 {
 
     public static void main(String[] args) {
 //        System.out.println(subsets(Arrays.asList(1, 2, 3, 4)));

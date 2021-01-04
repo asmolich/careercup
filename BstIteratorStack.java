@@ -2,6 +2,12 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.Queue;
 
+/**
+ * LeetCode
+ * 173. Binary Search Tree Iterator
+ * https://leetcode.com/problems/binary-search-tree-iterator/
+ * #Medium #Tree #Stack
+ */
 public class BstIteratorStack {
     static class TreeNode {
         int val;
@@ -16,41 +22,36 @@ public class BstIteratorStack {
         }
     }
 
-    private TreeNode next;
-    private Deque<TreeNode> deq = new ArrayDeque<>();
+    private final Deque<TreeNode> deq = new ArrayDeque<>();
 
     public BstIteratorStack(TreeNode root) {
-        next = root;
-        deq.add(next);
-        while (next.left != null) {
-            deq.add(next.left);
-            next = next.left;
-        }
+        leftMostInOrder(root);
 
-        System.out.println("Init: deq = " + deq + ", next = " + this.next + ", hasNext = " + hasNext());
+        System.out.println("Init: deq = " + deq + ", hasNext = " + hasNext());
+    }
+
+    private void leftMostInOrder(TreeNode root) {
+        while (root != null) {
+            deq.add(root);
+            root = root.left;
+        }
     }
 
     /**
      * @return whether we have a next smallest number
      */
     public boolean hasNext() {
-        //System.out.println("deq = " + deq + ", next = " + next);
-        return next != null && next.right != null || !deq.isEmpty();
+        return !deq.isEmpty();
     }
 
     /**
      * @return the next smallest number
      */
     public int next() {
+        TreeNode next = deq.removeLast();
         System.out.println("hasNext = " + hasNext() + ", next = " + next + ", deq = " + deq);
-        if (next.left == null) {
-            next = deq.isEmpty() ? next.right : deq.removeLast();
-        } else if (next.right != null) {
-            next = next.right;
-            while (next.left != null) {
-                deq.add(next.left);
-                next = next.left;
-            }
+        if (next.right != null) {
+            leftMostInOrder(next.right);
         }
         return next.val;
     }

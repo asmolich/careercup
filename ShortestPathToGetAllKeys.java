@@ -5,9 +5,9 @@ import java.util.Queue;
  * LeetCode
  * 864. Shortest Path to Get All Keys
  * https://leetcode.com/problems/shortest-path-to-get-all-keys/
+ * #Hard #BFS
  */
 public class ShortestPathToGetAllKeys {
-
     public static void main(String[] args) {
         System.out.println(shortestPathAllKeys(new String[]{
                 "@.a.#",
@@ -33,6 +33,7 @@ public class ShortestPathToGetAllKeys {
         }));
     }
 
+    @SuppressWarnings("unused")
     private enum Key {
         a, b, c, d, e, f
     }

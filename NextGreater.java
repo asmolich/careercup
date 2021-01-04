@@ -1,28 +1,33 @@
-import java.util.ArrayList;
+import java.util.ArrayDeque;
 import java.util.Arrays;
+import java.util.Deque;
 
+/**
+ * InterviewBit. Next Greater
+ * https://www.interviewbit.com/problems/nextgreater/
+ * #Medium #Stack
+ */
 public class NextGreater {
     public static void main(String[] args) {
-        ArrayList<Integer> data = new ArrayList<>(Arrays.asList(4, 5, 2, 10));
-
-        System.out.println(nextGreater(data));
+        System.out.println(Arrays.toString(nextGreater(new int[]{4, 5, 2, 10}))); // [5, 10, 10, -1]
+        System.out.println(Arrays.toString(nextGreater(new int[]{3, 4, 1, 6, 2}))); // [4, 6, 6, -1, -1]
     }
 
-    private static ArrayList<Integer> nextGreater(ArrayList<Integer> a) {
-        ArrayList<Integer> res = new ArrayList<>();
-        if (a == null || a.isEmpty()) return res;
+    private static int[] nextGreater(int[] a) {
+        if (a == null || a.length == 0) return a;
 
-        for (int i = 0; i < a.size(); i++) {
-            Integer ai = a.get(i);
-            int minAj = -1;
-            for (int j = i + 1; j < a.size(); j++) {
-                Integer aj = a.get(j);
-                if (aj > ai) {
-                    minAj = aj;
-                    break;
+        int n = a.length;
+        int[] res = new int[n];
+        Deque<Integer> deq = new ArrayDeque<>(n);
+        for (int i = 0; i < n; i++) {
+            res[i] = -1;
+            if (deq.isEmpty() || a[deq.getLast()] > a[i]) deq.add(i);
+            else {
+                while (!deq.isEmpty() && a[deq.getLast()] <= a[i]) {
+                    res[deq.removeLast()] = a[i];
                 }
+                i--;
             }
-            res.add(minAj);
         }
         return res;
     }

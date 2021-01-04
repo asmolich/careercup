@@ -1,17 +1,18 @@
 import java.util.Arrays;
 
-/**
- * Knuth's Shuffling Algorithm
- * https://www.youtube.com/watch?v=54rMYC2pEtw
- */
 public class Shuffle {
     public static void main(String[] args) {
         final int[] data = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-        shuffle(data);
-        System.out.println(Arrays.toString(data));
+        int[] copy = Arrays.copyOf(data, data.length);
+        knuthsShuffle(copy);
+        System.out.println(Arrays.toString(copy));
     }
 
-    private static void shuffle(int[] arr) {
+    /**
+     * Knuth's Shuffling Algorithm (Fisher–Yates)
+     * https://www.youtube.com/watch?v=54rMYC2pEtw
+     */
+    private static void knuthsShuffle(int[] arr) {
         if (arr == null || arr.length == 0) return;
 
         for (int i = 1; i < arr.length; i++) {

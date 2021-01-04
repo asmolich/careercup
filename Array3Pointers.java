@@ -1,26 +1,19 @@
-import java.util.Arrays;
-import java.util.List;
-
 /**
- * Array 3 Pointers. https://www.interviewbit.com/problems/array-3-pointers/
- *
- *
+ * InterviewBit
+ * Array 3 Pointers
+ * https://www.interviewbit.com/problems/array-3-pointers/
+ * <p>
  * You are given 3 arrays A, B and C. All 3 of the arrays are sorted.
- *
+ * <p>
  * Find i, j, k such that: max(abs(A[i] - B[j]), abs(B[j] - C[k]), abs(C[k] - A[i])) is minimized.
  * Return the minimum
  */
 public class Array3Pointers {
     public static void main(String[] args) {
         Array3Pointers a3p = new Array3Pointers();
-        List<Integer> a = Arrays.asList(1, 4, 10);
-        List<Integer> b = Arrays.asList(2, 15);
-        List<Integer> c = Arrays.asList(10, 12);
-        //System.out.println(a3p.minimize(a, b, c));
-
-        int[] x = new int[]{1, 4, 10};
-        int[] y = new int[]{2, 15};
-        int[] z = new int[]{10, 12};
+        int[] x = {1, 4, 10};
+        int[] y = {2, 15};
+        int[] z = {10, 12};
 
         System.out.println(a3p.minimize(x, y, z));
     }

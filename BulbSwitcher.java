@@ -22,6 +22,8 @@
  *
  * So you should return 1, because there is only one bulb is on.
  * </pre>
+ *
+ * #Medium #Math #Sqrt
  */
 public class BulbSwitcher {
     public static void main(String[] args) {

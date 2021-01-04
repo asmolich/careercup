@@ -7,6 +7,7 @@ import java.util.Queue;
  * LeetCode
  * 968. Binary Tree Cameras
  * https://leetcode.com/problems/binary-tree-cameras/
+ * #Hard #Tree #DP
  */
 public class BinaryTreeCameras {
     private static class TreeNode {

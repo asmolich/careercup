@@ -1,6 +1,12 @@
 import java.util.ArrayDeque;
 import java.util.Queue;
 
+/**
+ * LeetCode
+ * 173. Binary Search Tree Iterator
+ * https://leetcode.com/problems/binary-search-tree-iterator/
+ * #Medium #Tree
+ */
 public class BstIterator {
     static class TreeNode {
         int val;
@@ -20,9 +26,13 @@ public class BstIterator {
     private TreeNode root = null;
 
     public BstIterator(TreeNode root) {
-        this.root = root;
-        current = root;
-        pred = root;
+        leftMostInOrder(root);
+    }
+
+    private void leftMostInOrder(TreeNode root) {
+        while (root != null) {
+            root = root.left;
+        }
     }
 
     /**

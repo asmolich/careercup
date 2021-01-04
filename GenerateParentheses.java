@@ -1,11 +1,20 @@
 import java.util.ArrayList;
 import java.util.List;
 
-class Parentheses {
+/**
+ * LeetCode 22. Generate Parentheses
+ * https://leetcode.com/problems/generate-parentheses/
+ * #Medium
+ */
+public class GenerateParentheses {
+    public static void main(String[] args) {
+        GenerateParentheses parenthesis = new GenerateParentheses();
 
-    /**
-     * leetcode 22. Generate Parentheses
-     */
+        for (int i = 0; i < 6; i++) {
+            System.out.println("Generate sequence of " + i + " parenthesis: " + parenthesis.generateParenthesis(i));
+        }
+    }
+
     public List<String> generateParenthesis(int n) {
         List<String> result = new ArrayList<>();
         generateParenthesis(result, new char[2 * n], n, n, 0);
@@ -26,19 +35,11 @@ class Parentheses {
 
     public boolean isValid(char[] str) {
         int open = 0;
-        for (int i = 0; i < str.length; i++) {
-            if (str[i] == '(') open++;
+        for (char c : str) {
+            if (c == '(') open++;
             else if (open > 0) open--;
             else return false;
         }
         return open == 0;
-    }
-
-    public static void main(String[] args) {
-        Parentheses parenthesis = new Parentheses();
-
-        for (int i = 0; i < 6; i++) {
-            System.out.println("Generate sequence of " + i + " parenthesis: " + parenthesis.generateParenthesis(i));
-        }
     }
 }

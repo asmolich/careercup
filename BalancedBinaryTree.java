@@ -2,8 +2,10 @@ import java.util.ArrayDeque;
 import java.util.Queue;
 
 /**
- * LeetCode. 110. Balanced Binary Tree
+ * LeetCode
+ * 110. Balanced Binary Tree
  * https://leetcode.com/problems/balanced-binary-tree/
+ * #Easy #Tree #Recursion
  */
 public class BalancedBinaryTree {
     public static void main(String[] args) {

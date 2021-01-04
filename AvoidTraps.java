@@ -36,8 +36,8 @@ import java.util.List;
  */
 public class AvoidTraps {
 
-    private static List<Integer> primes = PrimeGenerator.primes(100000);
-    private static int[] primesCount = new int[100001];
+    private static final List<Integer> primes = PrimeGenerator.primes(100000);
+    private static final int[] primesCount = new int[100001];
 
     static {
         // pre-processing

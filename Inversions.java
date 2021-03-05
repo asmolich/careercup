@@ -37,7 +37,7 @@ public class Inversions {
 
         int count = 0;
         int n = hi - lo + 1;
-        ArrayList<Pair> pairs = new ArrayList<Pair>();
+        ArrayList<Pair> pairs = new ArrayList<>();
         for (int i = 0; i < n; i++) {
             for (int j = i + 1; j < n; j++) {
                 if (a[j] < a[i]) {

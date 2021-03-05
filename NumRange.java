@@ -1,6 +1,11 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * InterviewBit
+ * NumRange
+ * https://www.interviewbit.com/problems/numrange/
+ */
 public class NumRange {
     public static void main(String[] args) {
         NumRange nr = new NumRange();

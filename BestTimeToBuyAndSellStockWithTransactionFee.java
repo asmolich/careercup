@@ -5,7 +5,6 @@
  * #Medium #DP
  */
 public class BestTimeToBuyAndSellStockWithTransactionFee {
-
     public static void main(String[] args) {
         System.out.println(maxProfit(new int[]{1, 3, 2, 8, 4, 9}, 2)); // 8
         System.out.println(maxProfit(new int[]{1, 3, 7, 5, 10, 3}, 3)); // 6

@@ -1,6 +1,8 @@
 /**
- * LeetCode. 70. Climbing Stairs
+ * LeetCode
+ * 70. Climbing Stairs
  * https://leetcode.com/problems/climbing-stairs/
+ * #Easy #DP
  */
 public class ClimbingStairs {
     public static void main(String[] args) {

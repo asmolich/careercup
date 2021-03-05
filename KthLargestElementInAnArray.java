@@ -1,7 +1,8 @@
 /**
- * LeetCode 215. Kth Largest Element in an Array
+ * LeetCode
+ * 215. Kth Largest Element in an Array
  * https://leetcode.com/problems/kth-largest-element-in-an-array/
- * #Medium #QuickSelect #Partitioning
+ * #Medium #QuickSelect #Partitioning #Heap #PriorityQueue
  */
 public class KthLargestElementInAnArray {
     public static void main(String[] args) {
@@ -14,12 +15,33 @@ public class KthLargestElementInAnArray {
         if (nums == null || nums.length == 0 || k < 0) return -1;
 
         int n = nums.length;
-        int lo = 1;
-        int hi = n -1;
-        int pivot = nums[0];
-        for (int i = lo; i < hi; i++) {
-
+        int lo = 0;
+        int hi = n - 1;
+        int index = n - k;
+        while (lo < hi) {
+            int pivot = partition(nums, lo, hi);
+            if (pivot < index) lo = pivot + 1;
+            else if (pivot > index) hi = pivot - 1;
+            else return nums[pivot];
         }
-        return 0;
+        return nums[lo];
+    }
+
+    private int partition(int[] nums, int lo, int hi) {
+        int pivot = lo;
+        while (lo <= hi) {
+            while (lo <= hi && nums[lo] <= nums[pivot]) lo++;
+            while (lo <= hi && nums[hi] > nums[pivot]) hi--;
+            if (lo > hi) break;
+            swap(nums, lo, hi);
+        }
+        swap(nums, hi, pivot);
+        return hi;
+    }
+
+    private void swap(int[] nums, int lo, int hi) {
+        int temp = nums[lo];
+        nums[lo] = nums[hi];
+        nums[hi] = temp;
     }
 }

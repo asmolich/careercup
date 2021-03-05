@@ -2,8 +2,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 public class LinkedListToBST {
-
-    static class ListNode {
+    private static class ListNode {
         int data;
         ListNode next;
         ListNode prev;
@@ -13,7 +12,7 @@ public class LinkedListToBST {
         }
     }
 
-    static class TreeNode {
+    private static class TreeNode {
         int data;
         TreeNode left;
         TreeNode right;

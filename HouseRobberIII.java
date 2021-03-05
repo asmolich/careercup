@@ -2,8 +2,10 @@ import java.util.ArrayDeque;
 import java.util.Queue;
 
 /**
- * LeetCode. 337. House Robber III
+ * LeetCode
+ * 337. House Robber III
  * https://leetcode.com/problems/house-robber-iii/
+ * #Medium #Tree #DP #DFS
  */
 public class HouseRobberIII {
     public static void main(String[] args) {

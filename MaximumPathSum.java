@@ -2,32 +2,36 @@ import java.util.ArrayDeque;
 import java.util.Queue;
 
 /**
- * LeetCode. 124. Binary Tree Maximum Path Sum. https://leetcode.com/problems/binary-tree-maximum-path-sum/
+ * LeetCode
+ * 124. Binary Tree Maximum Path Sum
+ * https://leetcode.com/problems/binary-tree-maximum-path-sum/
  */
 public class MaximumPathSum {
     public static void main(String[] args) {
-        System.out.println(maxPathSum(buildBstFromLevelOrder(new Integer[]{4, 2, 6, 1, 3, null, 7})));
-        System.out.println(maxPathSum(buildBstFromLevelOrder(new Integer[]{1, 2, 3})));
-        System.out.println(maxPathSum(buildBstFromLevelOrder(new Integer[]{-10, 9, 20, null, null, 15, 7})));
+        MaximumPathSum sol = new MaximumPathSum();
+        System.out.println(sol.maxPathSum(buildBstFromLevelOrder(new Integer[]{4, 2, 6, 1, 3, null, 7}))); // 22
+        System.out.println(sol.maxPathSum(buildBstFromLevelOrder(new Integer[]{1, 2, 3}))); // 6
+        System.out.println(sol.maxPathSum(buildBstFromLevelOrder(new Integer[]{-10, 9, 20, null, null, 15, 7}))); // 42
     }
 
-    static int max = Integer.MIN_VALUE;
+    private int max = Integer.MIN_VALUE;
 
-    private static int maxPathSum(TreeNode root) {
+    public int maxPathSum(TreeNode root) {
         max = Integer.MIN_VALUE;
-        mps(root);
+        if (root == null) return 0;
+        maxPathSum0(root);
         return max;
     }
 
-    private static int mps(TreeNode node) {
+    private int maxPathSum0(TreeNode node) {
         if (node == null) return 0;
-        final int value = node.val;
-        final int left = mps(node.left);
-        final int right = mps(node.right);
+        int value = node.val;
+        int left = maxPathSum0(node.left);
+        int right = maxPathSum0(node.right);
         int maxSubPath = max(
-            value,
-            left + value,
-            right + value
+                value,
+                left + value,
+                right + value
         );
 
         int localMaxPath = Math.max(left + right + value, maxSubPath);
@@ -39,11 +43,10 @@ public class MaximumPathSum {
         return Math.max(Math.max(a, b), c);
     }
 
-    static class TreeNode {
+    private static class TreeNode {
         final int val;
         TreeNode left;
         TreeNode right;
-        TreeNode next = null;
 
         TreeNode(int v) {
             this(v, null, null);
@@ -60,7 +63,6 @@ public class MaximumPathSum {
         }
     }
 
-    @SuppressWarnings("Duplicates")
     private static TreeNode buildBstFromLevelOrder(Integer[] order) {
         if (order == null || order.length == 0) return null;
         TreeNode head = null;
@@ -80,12 +82,6 @@ public class MaximumPathSum {
             }
             if (node != null) parents.add(node);
         }
-
-//        while (!parents.isEmpty()) {
-//            if (left) parents.peek().left = null;
-//            else parents.poll().right = null;
-//            left = !left;
-//        }
 
         return head;
     }

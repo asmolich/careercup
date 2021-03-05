@@ -6,10 +6,10 @@ import java.util.Queue;
  * LeetCode
  * 173. Binary Search Tree Iterator
  * https://leetcode.com/problems/binary-search-tree-iterator/
- * #Medium #Tree #Stack
+ * #Medium #Tree #Stack #Iterator
  */
 public class BstIteratorStack {
-    static class TreeNode {
+    private static class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;

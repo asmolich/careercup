@@ -5,10 +5,25 @@ import java.util.Queue;
  * LeetCode
  * 173. Binary Search Tree Iterator
  * https://leetcode.com/problems/binary-search-tree-iterator/
- * #Medium #Tree
+ * #Medium #Tree #Iterator
+ * #incomplete
  */
 public class BstIterator {
-    static class TreeNode {
+    public static void main(String[] args) {
+        TreeNode root = buildBstFromLevelOrder(new Integer[]{4, 2, 6, 1, 3, null, 7});
+
+        System.out.print("In Order = ");
+        inOrder(root);
+        System.out.println();
+
+        BstIterator i = new BstIterator(root);
+        while (i.hasNext()) {
+            System.out.print(i.next() + ", ");
+        }
+        System.out.println();
+    }
+
+    private static class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
@@ -50,7 +65,6 @@ public class BstIterator {
         return result;
     }
 
-    @SuppressWarnings("Duplicates")
     private static TreeNode buildBstFromLevelOrder(Integer[] order) {
         if (order == null || order.length == 0) return null;
         TreeNode head = null;
@@ -87,19 +101,5 @@ public class BstIterator {
             System.out.print(", ");
             inOrder(node.right);
         }
-    }
-
-    public static void main(String[] args) {
-        TreeNode root = buildBstFromLevelOrder(new Integer[]{4, 2, 6, 1, 3, null, 7});
-
-        System.out.print("In Order = ");
-        inOrder(root);
-        System.out.println();
-
-        BstIterator i = new BstIterator(root);
-        while (i.hasNext()) {
-            System.out.print(i.next() + ", ");
-        }
-        System.out.println();
     }
 }

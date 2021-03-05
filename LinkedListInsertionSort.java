@@ -1,5 +1,5 @@
 public class LinkedListInsertionSort {
-    static class ListNode {
+    private static class ListNode {
         int value;
         ListNode next;
 

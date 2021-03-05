@@ -26,7 +26,7 @@ class Range {
   }
 }
 
-class Solution {
+class OfficerLocationSearch {
   public static void main(String[] args) {
     System.out.println(merge(Arrays.asList(
                              new Range(2,5), new Range(1,4)

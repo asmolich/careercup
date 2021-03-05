@@ -8,10 +8,10 @@ import java.util.stream.Collectors;
 
 /**
  * HackerRank. Indeed Onsite.
+ * Fuzzy Job Search
  * https://www.hackerrank.com/tests/glfngtjgbil/questions/21gha8p0oak
  */
 public class FuzzyJobSearch {
-
     public static void main(String[] args) {
         FuzzyJobSearch.storeDocument("pet washer cats cats cats", 0);
         FuzzyJobSearch.storeDocument("java dev", 1);
@@ -24,7 +24,7 @@ public class FuzzyJobSearch {
         System.out.println(FuzzyJobSearch.performSearch("javadev"));
     }
 
-    private static Map<String, Set<Integer>> index = new HashMap<>();
+    private static final Map<String, Set<Integer>> index = new HashMap<>();
 
     private static void storeDocument(final String document, final int documentNumber) {
         StringTokenizer tokenizer = new StringTokenizer(document, " ");
@@ -64,16 +64,16 @@ public class FuzzyJobSearch {
         }
 
         final List<String> result = hist.keySet().stream()
-            .map(k -> new Pair(k, hist.get(k)))
-            .sorted((a, b) -> {
-                final int cmp = Integer.compare(a.count, b.count);
-                if (cmp == 0) return Integer.compare(a.idx, b.idx); // use order statistics instead
-                return -cmp;
-            })
-            .limit(10)
-            .map(p -> p.idx)
-            .map(Object::toString)
-            .collect(Collectors.toList());
+                .map(k -> new Pair(k, hist.get(k)))
+                .sorted((a, b) -> {
+                    final int cmp = Integer.compare(a.count, b.count);
+                    if (cmp == 0) return Integer.compare(a.idx, b.idx); // use order statistics instead
+                    return -cmp;
+                })
+                .limit(10)
+                .map(p -> p.idx)
+                .map(Object::toString)
+                .collect(Collectors.toList());
 
         if (result.size() > 0) return String.join(" ", result);
         return "-1";

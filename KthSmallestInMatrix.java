@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.PriorityQueue;
 
 /**
+ * https://www.geeksforgeeks.org/kth-smallest-element-in-a-row-wise-and-column-wise-sorted-2d-array-set-1/
  * <pre>
  * Given a matrix A.
  * Property: A[i][j] <= A[i+1][j]
@@ -19,10 +20,10 @@ public class KthSmallestInMatrix {
     public static void main(String[] args) {
         KthSmallestInMatrix dp = new KthSmallestInMatrix();
         int[][] matrix = new int[][]{
-            {1, 4, 5, 10, 100},
-            {2, 6, 7, 12, 101},
-            {3, 8, 9, 13, 102},
-            {110, 111, 112, 113, 120}
+                {1, 4, 5, 10, 100},
+                {2, 6, 7, 12, 101},
+                {3, 8, 9, 13, 102},
+                {110, 111, 112, 113, 120}
         };
         System.out.println("Kth smallest in matrix:");
         for (int[] row : matrix) System.out.println(Arrays.toString(row));
@@ -140,37 +141,37 @@ public class KthSmallestInMatrix {
         }
         return -1;
     }
-}
 
-class Elem implements Comparable<Elem> {
-    final int i, j, val;
+    static class Elem implements Comparable<Elem> {
+        final int i, j, val;
 
-    Elem(int x, int y, int v) {
-        i = x;
-        j = y;
-        val = v;
-    }
+        Elem(int x, int y, int v) {
+            i = x;
+            j = y;
+            val = v;
+        }
 
-    @Override
-    public int compareTo(Elem el) {
-        return Integer.compare(val, el.val);
-    }
+        @Override
+        public int compareTo(Elem el) {
+            return Integer.compare(val, el.val);
+        }
 
-    @Override
-    public String toString() {
-        return "[" + i + ", " + j + ", " + val + "]";
-    }
+        @Override
+        public String toString() {
+            return "[" + i + ", " + j + ", " + val + "]";
+        }
 
-    @Override
-    public int hashCode() {
-        return 31 * val + 13 * i + 17 * j;
-    }
+        @Override
+        public int hashCode() {
+            return 31 * val + 13 * i + 17 * j;
+        }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Elem)) return false;
-        Elem el = (Elem) o;
-        return (i == el.i) && (j == el.j) && (val == el.val);
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (!(o instanceof Elem)) return false;
+            Elem el = (Elem) o;
+            return (i == el.i) && (j == el.j) && (val == el.val);
+        }
     }
 }

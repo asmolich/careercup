@@ -6,14 +6,14 @@ import java.util.stream.Stream;
 
 /**
  * InterviewBit. Triplets With Sum Between Given Range.
- *
+ * <p>
  * https://www.interviewbit.com/problems/triplets-with-sum-between-given-range/
  */
 public class TripletsWithSumBetweenGivenRange {
 
     public static void main(String[] args) {
         final String[] data = {
-            "0.6", "0.7", "0.8", "1.2", "0.4"
+                "0.6", "0.7", "0.8", "1.2", "0.4"
         };
         System.out.println(Arrays.toString(data));
         System.out.println("*************");
@@ -62,8 +62,8 @@ public class TripletsWithSumBetweenGivenRange {
 
     private static boolean isInInterval(double d, int interval) {
         return ((interval == 1) && (d > 0 && d < 2.0 / 3.0)) ||
-            ((interval == 2) && (d >= 2.0 / 3.0 && d < 1.0)) ||
-            ((interval == 3) && (d >= 1.0 && d < 2.0));
+                ((interval == 2) && (d >= 2.0 / 3.0 && d < 1.0)) ||
+                ((interval == 3) && (d >= 1.0 && d < 2.0));
     }
 
     // O(n)
@@ -71,8 +71,8 @@ public class TripletsWithSumBetweenGivenRange {
         if (arr == null || arr.length < 3) return false;
 
         double[] a = Stream.of(arr)
-            .mapToDouble(Double::parseDouble)
-            .toArray();
+                .mapToDouble(Double::parseDouble)
+                .toArray();
 
         double max1A = Double.NEGATIVE_INFINITY;
         double max2A = Double.NEGATIVE_INFINITY;
@@ -137,9 +137,9 @@ public class TripletsWithSumBetweenGivenRange {
         if (arr == null || arr.length < 3) return false;
 
         double[] a = Stream.of(arr)
-            .mapToDouble(Double::parseDouble)
-            .sorted()
-            .toArray();
+                .mapToDouble(Double::parseDouble)
+                .sorted()
+                .toArray();
 
         int length = arr.length;
         int i = 0;

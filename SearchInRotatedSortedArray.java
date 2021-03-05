@@ -2,7 +2,7 @@
  * LeetCode
  * 33. Search in Rotated Sorted Array
  * https://leetcode.com/problems/search-in-rotated-sorted-array/
- * #Medium #BinarySearch
+ * #Medium #BinarySearch #Rotated
  */
 public class SearchInRotatedSortedArray {
     public static void main(String[] args) {
@@ -27,7 +27,7 @@ public class SearchInRotatedSortedArray {
         int hi = pivot + n - 1;
 
         while (lo <= hi) {
-            int mid = lo + (hi - lo) / 2;
+            int mid = (lo + hi) >>> 1;
             int midVal = a[mid % n];
             if (midVal == b) return mid % n;
             else if (midVal < b) {
@@ -43,7 +43,7 @@ public class SearchInRotatedSortedArray {
         int lo = 0;
         int hi = a.length - 1;
         while (lo <= hi) {
-            int mid = lo + (hi - lo) / 2;
+            int mid = (lo + hi) >>> 1;
             if (mid < a.length - 1 && a[mid] > a[mid + 1]) {
                 return mid + 1;
             } else if (mid > 0 && a[mid] < a[mid - 1]) {

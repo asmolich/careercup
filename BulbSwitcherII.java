@@ -7,9 +7,9 @@
  * There is a room with n lights which are turned on initially and 4 buttons on the wall.
  * After performing exactly m unknown operations towards buttons, you need to return how many different kinds
  * of status of the n lights could be.
- *
+ * <p>
  * Suppose n lights are labeled as number [1, 2, 3 ..., n], function of these 4 buttons are given below:
- *
+ * <p>
  * Flip all the lights.
  * Flip lights with even numbers.
  * Flip lights with odd numbers.
@@ -39,17 +39,23 @@
  *
  * Note: n and m both fit in range [0, 1000].
  * </pre>
+ * <p>
+ * #Medium #Math
  */
 public class BulbSwitcherII {
     public static void main(String[] args) {
-        for (int n = 1; n < 1000; n++) {
-            for (int m = 1; m < 1000; m++) {
+        for (int n = 1; n < 10; n++) {
+            for (int m = 1; m < 10; m++) {
                 System.out.printf("%2d - %d%n", n, flipLights(n, m));
             }
         }
     }
 
     private static int flipLights(int n, int m) {
-        return 0;
+        if (n == 0 || m == 0) return 1;
+        if (n == 1) return 2;
+        if (n == 2) return m == 1 ? 3 : 4;
+        if (m == 1) return 4;
+        return m == 2 ? 7 : 8;
     }
 }

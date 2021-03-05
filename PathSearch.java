@@ -49,18 +49,18 @@ class PathSearch {
 
     List<Node> neighbours(Node node) {
         List<Node> neighbours = new ArrayList<>(4);
-        if (inBounds(node.x - 1, node.y) && isCoridor(node.x - 1, node.y))
+        if (inBounds(node.x - 1, node.y) && isCorridor(node.x - 1, node.y))
             neighbours.add(new Node(node.x - 1, node.y).withG(node.g + 1).withParent(node));
-        if (inBounds(node.x, node.y - 1) && isCoridor(node.x, node.y - 1))
+        if (inBounds(node.x, node.y - 1) && isCorridor(node.x, node.y - 1))
             neighbours.add(new Node(node.x, node.y - 1).withG(node.g + 1).withParent(node));
-        if (inBounds(node.x + 1, node.y) && isCoridor(node.x + 1, node.y))
+        if (inBounds(node.x + 1, node.y) && isCorridor(node.x + 1, node.y))
             neighbours.add(new Node(node.x + 1, node.y).withG(node.g + 1).withParent(node));
-        if (inBounds(node.x, node.y + 1) && isCoridor(node.x, node.y + 1))
+        if (inBounds(node.x, node.y + 1) && isCorridor(node.x, node.y + 1))
             neighbours.add(new Node(node.x, node.y + 1).withG(node.g + 1).withParent(node));
         return neighbours;
     }
 
-    boolean isCoridor(int i, int j) {
+    boolean isCorridor(int i, int j) {
         return grid[i][j] != 1 && grid[i][j] < 10;
     }
 
@@ -126,33 +126,33 @@ class PathSearch {
 
     public static void main(String[] args) {
         int[][][] inputs = {
-            {
-                {0, 0, 0},
-                {0, 0, 0},
-                {0, 0, 0}
-            },
-            {
-                {0, 1, 0},
-                {1, 0, 0},
-                {0, 0, 0}
-            },
-            {
-                {0, 0, 0, 0},
-                {1, 1, 1, 0},
-                {0, 0, 0, 0},
-                {0, 1, 1, 1},
-                {0, 0, 0, 0}
-            },
-            {
-                {0, 0, 0},
-                {0, 0, 0},
-                {0, 0, 0}
-            },
-            {
-                {0, 0, 0},
-                {0, 0, 0},
-                {0, 0, 0}
-            }
+                {
+                        {0, 0, 0},
+                        {0, 0, 0},
+                        {0, 0, 0}
+                },
+                {
+                        {0, 1, 0},
+                        {1, 0, 0},
+                        {0, 0, 0}
+                },
+                {
+                        {0, 0, 0, 0},
+                        {1, 1, 1, 0},
+                        {0, 0, 0, 0},
+                        {0, 1, 1, 1},
+                        {0, 0, 0, 0}
+                },
+                {
+                        {0, 0, 0},
+                        {0, 0, 0},
+                        {0, 0, 0}
+                },
+                {
+                        {0, 0, 0},
+                        {0, 0, 0},
+                        {0, 0, 0}
+                }
         };
 
         for (int i = 0; i < inputs.length; i++) {

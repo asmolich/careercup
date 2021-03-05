@@ -8,7 +8,9 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 /**
- * InterviewBit. Hotel Reviews. https://www.interviewbit.com/problems/hotel-reviews/
+ * InterviewBit
+ * Hotel Reviews
+ * https://www.interviewbit.com/problems/hotel-reviews/
  */
 public class HotelReviews {
     public static void main(String[] args) {
@@ -25,7 +27,6 @@ public class HotelReviews {
         TrieNode head = buildTrie(s);
         System.out.println("============");
         printTrie(head);
-        if (head == null) return result;
 
         System.out.println("============");
         LinkedHashMap<Integer, Integer> order = new LinkedHashMap<>();
@@ -57,10 +58,10 @@ public class HotelReviews {
         System.out.println("============");
 
         return order.entrySet()
-            .stream()
-            .sorted((a, b) -> -Integer.compare(a.getValue(), b.getValue()))
-            .map(Map.Entry::getKey)
-            .collect(Collectors.toCollection(ArrayList::new));
+                .stream()
+                .sorted((a, b) -> -Integer.compare(a.getValue(), b.getValue()))
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
     private TrieNode buildTrie(String s) {
@@ -98,19 +99,19 @@ public class HotelReviews {
         }
     }
 
-    static class TrieNode {
+    private static class TrieNode {
         TrieNode[] children = new TrieNode[26];
         boolean isTerminal = false;
 
         @Override
         public String toString() {
             return "TrieNode{" +
-                "children=" + IntStream.range(0, children.length)
-                .mapToObj(i -> children[i] == null ? (char) 0 : (char) (i + 'a'))
-                .filter(c -> c > 0)
-                .collect(Collectors.toList()) +
-                ", isTerminal=" + isTerminal +
-                '}';
+                    "children=" + IntStream.range(0, children.length)
+                    .mapToObj(i -> children[i] == null ? (char) 0 : (char) (i + 'a'))
+                    .filter(c -> c > 0)
+                    .collect(Collectors.toList()) +
+                    ", isTerminal=" + isTerminal +
+                    '}';
         }
     }
 }

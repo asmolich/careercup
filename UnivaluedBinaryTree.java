@@ -2,18 +2,19 @@ import java.util.ArrayDeque;
 import java.util.Queue;
 
 /**
- * LeetCode. 965. Univalued Binary Tree
+ * LeetCode
+ * 965. Univalued Binary Tree
  * https://leetcode.com/problems/univalued-binary-tree/
+ * #Easy #Tree
  */
 public class UnivaluedBinaryTree {
     public static void main(String[] args) {
-        System.out.println(isUnivalTree(buildBstFromLevelOrder(new Integer[]{1})));
-        System.out.println(isUnivalTree(buildBstFromLevelOrder(new Integer[]{1, 1})));
-        System.out.println(isUnivalTree(buildBstFromLevelOrder(new Integer[]{1, 2})));
-        System.out.println(isUnivalTree(buildBstFromLevelOrder(new Integer[]{1, 1, 1, 1, 1, null, 1})));
-        TreeNode root = buildBstFromLevelOrder(new Integer[]{2, 2, 2, 5, 2});
-//        System.out.println(root);
-        System.out.println(isUnivalTree(root));
+        UnivaluedBinaryTree sol = new UnivaluedBinaryTree();
+        System.out.println(sol.isUnivalTree(buildBstFromLevelOrder(new Integer[]{1}))); // true
+        System.out.println(sol.isUnivalTree(buildBstFromLevelOrder(new Integer[]{1, 1}))); // true
+        System.out.println(sol.isUnivalTree(buildBstFromLevelOrder(new Integer[]{1, 2}))); // false
+        System.out.println(sol.isUnivalTree(buildBstFromLevelOrder(new Integer[]{1, 1, 1, 1, 1, null, 1}))); // true
+        System.out.println(sol.isUnivalTree(buildBstFromLevelOrder(new Integer[]{2, 2, 2, 5, 2}))); // false
     }
 
     private static class TreeNode {
@@ -35,12 +36,12 @@ public class UnivaluedBinaryTree {
         }
     }
 
-    private static boolean isUnivalTree(TreeNode root) {
+    public boolean isUnivalTree(TreeNode root) {
         if (root == null) return false;
         return isUnivalTree0(root);
     }
 
-    private static boolean isUnivalTree0(TreeNode node) {
+    private boolean isUnivalTree0(TreeNode node) {
         boolean result = true;
         if (node.left != null) {
             result = (node.left.val == node.val) && isUnivalTree0(node.left);

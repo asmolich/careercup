@@ -4,8 +4,13 @@ import java.util.List;
 /**
  * Sieve of Eratosthenes
  * https://www.geeksforgeeks.org/sieve-of-eratosthenes/
+ * Time: O(N*log(log(N)))
+ * Space: O(n)
  */
 public class PrimeGenerator {
+    public static void main(String[] args) {
+        System.out.println(primes(100));
+    }
 
     public static List<Integer> primes(int n) {
         // Create a boolean array "prime[0..n]" and initialize
@@ -30,9 +35,5 @@ public class PrimeGenerator {
             if (prime[i]) primes.add(i);
         }
         return primes;
-    }
-
-    public static void main(String[] args) {
-        System.out.println(primes(100));
     }
 }

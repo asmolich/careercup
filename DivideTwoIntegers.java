@@ -1,20 +1,22 @@
 /**
  * LeetCode
- * 29. Divide Two Integers. https://leetcode.com/problems/divide-two-integers/
+ * 29. Divide Two Integers
+ * https://leetcode.com/problems/divide-two-integers/
+ * #Medium
  */
-class Division {
-
+public class DivideTwoIntegers {
     public static void main(String[] args) {
-        System.out.println(divide(Integer.MAX_VALUE, Integer.MAX_VALUE));
-        System.out.println(divide(Integer.MIN_VALUE, Integer.MAX_VALUE));
-        System.out.println(divide(Integer.MIN_VALUE, Integer.MIN_VALUE));
+        DivideTwoIntegers sol = new DivideTwoIntegers();
+        System.out.println(sol.divide(Integer.MAX_VALUE, Integer.MAX_VALUE));
+        System.out.println(sol.divide(Integer.MIN_VALUE, Integer.MAX_VALUE));
+        System.out.println(sol.divide(Integer.MIN_VALUE, Integer.MIN_VALUE));
 
-        System.out.println(divide(2147483647, 2));
-        System.out.println(divide(-2147483647, -2));
-        System.out.println(divide(2147483647, 1));
+        System.out.println(sol.divide(2147483647, 2));
+        System.out.println(sol.divide(-2147483647, -2));
+        System.out.println(sol.divide(2147483647, 1));
     }
 
-    private static int divide(int dividend, int divisor) {
+    public int divide(int dividend, int divisor) {
         if (dividend == Integer.MIN_VALUE) {
             if (divisor == 1) return Integer.MIN_VALUE;
             if (divisor == -1) return Integer.MAX_VALUE;
@@ -34,7 +36,7 @@ class Division {
         return pos ? result : -result;
     }
 
-    private static int dividePositive(int dividend, int divisor) {
+    private int dividePositive(int dividend, int divisor) {
         if (dividend == divisor) return 1;
         System.out.println("dividePositive call, dividend = " + dividend + ", divisor = " + divisor);
         int result = 0;
@@ -60,7 +62,7 @@ class Division {
         return result;
     }
 
-    private static int divideNegative(int dividend, int divisor) {
+    private int divideNegative(int dividend, int divisor) {
         if (dividend == divisor) return 1;
         System.out.println("divideNegative call, dividend = " + dividend + ", divisor = " + divisor);
         int result = 0;

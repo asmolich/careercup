@@ -2,10 +2,14 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * LeetCode. Coke Machine. https://leetcode.com/discuss/interview-question/307252/Google-Coke-Machine
+ * LeetCode
+ * Coke Machine
+ * https://leetcode.com/discuss/interview-question/307252/Google-Coke-Machine
+ * #Medium #Backtracking
  *
  * <p>
- * Given a coke machine with a series of buttons. If you press a button it will get you a certain range of coke. Find out if it's possible to get the target range of coke. You can press buttons any number of times.
+ * Given a coke machine with a series of buttons. If you press a button it will get you a certain range of coke.
+ * Find out if it's possible to get the target range of coke. You can press buttons any number of times.
  * </p>
  * <pre>
  * Example 1:

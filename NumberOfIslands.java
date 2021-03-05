@@ -1,8 +1,11 @@
 /**
- * LeetCode. 200. Number of Islands
+ * LeetCode
+ * 200. Number of Islands
  * https://leetcode.com/problems/number-of-islands/
- * <p>
+ *
  * '1' - land, '0' - water, count the number of islands
+ *
+ * #Medium #BFS #DFS #UnionFind
  */
 public class NumberOfIslands {
     public static void main(String[] args) {

@@ -2,8 +2,10 @@ import java.util.ArrayDeque;
 import java.util.Queue;
 
 /**
- * LeetCode. 111. Minimum Depth of Binary Tree
+ * LeetCode
+ * 111. Minimum Depth of Binary Tree
  * https://leetcode.com/problems/minimum-depth-of-binary-tree/
+ * #Easy #Tree
  */
 public class MinimumDepthOfBinaryTree {
     public static void main(String[] args) {

@@ -1,5 +1,6 @@
 /**
- * LeetCode 53. Maximum Subarray
+ * LeetCode
+ * 53. Maximum Subarray
  * https://leetcode.com/problems/maximum-subarray/
  * #Easy #DP #DivideAndConquer
  */

@@ -3,8 +3,10 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * LeetCode. 118. Pascal's Triangle
+ * LeetCode
+ * 118. Pascal's Triangle
  * https://leetcode.com/problems/pascals-triangle/
+ * #Easy
  */
 public class PascalsTriangle {
     public static void main(String[] args) {

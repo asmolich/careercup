@@ -1,5 +1,6 @@
 /**
- * LeetCode. 509. Fibonacci Number
+ * LeetCode
+ * 509. Fibonacci Number
  * https://leetcode.com/problems/fibonacci-number/
  */
 public class FibonacciNumber {

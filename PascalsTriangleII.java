@@ -3,8 +3,10 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * LeetCode 119. Pascal's Triangle II
+ * LeetCode 119
+ * Pascal's Triangle II
  * https://leetcode.com/problems/pascals-triangle-ii/
+ * #Easy
  */
 public class PascalsTriangleII {
     public static void main(String[] args) {

@@ -12,17 +12,17 @@ import java.util.Set;
 public class TrappingRainWaterII {
     public static void main(String[] args) {
         int[][] input = {
-            {12, 13, 1, 12},
-            {13, 4, 13, 12},
-            {13, 8, 10, 12},
-            {12, 13, 12, 12},
-            {13, 13, 13, 13}
+                {12, 13, 1, 12},
+                {13, 4, 13, 12},
+                {13, 8, 10, 12},
+                {12, 13, 12, 12},
+                {13, 13, 13, 13}
         };
 
         int[][] input2 = {
-            {1, 4, 3, 1, 3, 2},
-            {3, 2, 1, 3, 2, 4},
-            {2, 3, 3, 2, 3, 1}
+                {1, 4, 3, 1, 3, 2},
+                {3, 2, 1, 3, 2, 4},
+                {2, 3, 3, 2, 3, 1}
         };
 
         System.out.println(trapRainWater(input));

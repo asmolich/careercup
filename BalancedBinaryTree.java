@@ -5,7 +5,7 @@ import java.util.Queue;
  * LeetCode
  * 110. Balanced Binary Tree
  * https://leetcode.com/problems/balanced-binary-tree/
- * #Easy #Tree #Recursion
+ * #Easy #Tree
  */
 public class BalancedBinaryTree {
     public static void main(String[] args) {

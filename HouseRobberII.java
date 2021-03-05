@@ -1,8 +1,8 @@
-import java.util.Map;
-
 /**
- * LeetCode. 213. House Robber II
+ * LeetCode
+ * 213. House Robber II
  * https://leetcode.com/problems/house-robber-ii/
+ * #Medium #DP
  */
 public class HouseRobberII {
     public static void main(String[] args) {

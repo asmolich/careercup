@@ -39,8 +39,8 @@ public class FilterIterator<T> implements Iterator<T> {
 
     @Override
     public boolean hasNext() {
+        if (state == State.DONE) return false;
         boolean result = false;
-        if (state == State.DONE) return result;
         if (state == State.READY) result = true;
         else {
             while (it.hasNext()) {

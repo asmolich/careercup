@@ -1,7 +1,9 @@
 import java.util.List;
 
 /**
- * Hacker Earth. Avoid traps.
+ * Hacker Earth
+ * Avoid traps
+ *
  * <p>
  * There is a cave of N cells where each cell has a trap or is safe to land.
  * From a cell <code><i>i</i></code>, a person can jump to cell <code><i>i</i> + 1</code> or <code><i>i</i> + 2</code>.
@@ -89,4 +91,4 @@ public class AvoidTraps {
         return steps[i];
     }
 }
-// #DP #window #house-robber
+// #DP #SlidingWindow #house-robber

@@ -2,9 +2,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * LeetCode. Easy
+ * LeetCode
  * 219. Contains Duplicate II
  * https://leetcode.com/problems/contains-duplicate-ii/
+ * #Easy
  */
 public class ContainsDuplicateII {
     public static void main(String[] args) {

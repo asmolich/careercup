@@ -1,26 +1,41 @@
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-class IndexPair {
-    int i;
-    int lastRead;
-    int length;
-
-    @Override
-    public String toString() {
-        return "IndexPair{" +
-            "i=" + i +
-            ", lastRead=" + lastRead +
-            ", length=" + length +
-            '}';
-    }
-}
-
+/**
+ * LeetCode
+ * 32. Longest Valid Parentheses
+ * https://leetcode.com/problems/longest-valid-parentheses/
+ * #Hard #Stack #DP
+ */
 public class LongestValidParentheses {
-    private static int longestValidParentheses(String s) {
-        if (s == null || s.length() < 2) return 0;
+    private static class IndexPair {
+        int i;
+        int lastRead;
+        int length;
 
-        //System.out.println(s);
+        @Override
+        public String toString() {
+            return "IndexPair{" +
+                    "i=" + i +
+                    ", lastRead=" + lastRead +
+                    ", length=" + length +
+                    '}';
+        }
+    }
+
+    public static void main(String[] args) {
+        LongestValidParentheses sol = new LongestValidParentheses();
+        System.out.println(sol.longestValidParentheses("(()())()((()(())))")); // 18
+        System.out.println(sol.longestValidParentheses("()(())")); // 6
+        System.out.println(sol.longestValidParentheses("(()")); // 2
+        System.out.println(sol.longestValidParentheses(")()())")); // 4
+        System.out.println(sol.longestValidParentheses("")); // 0
+        System.out.println(sol.longestValidParentheses("()(()")); // 2
+    }
+
+    @SuppressWarnings("unused")
+    private int longestValidParenthesesStack(String s) {
+        if (s == null || s.length() < 2) return 0;
 
         int length = 0;
         int maxLength = 0;
@@ -53,9 +68,24 @@ public class LongestValidParentheses {
         return maxLength;
     }
 
-    public static void main(String[] args) {
-        System.out.println(longestValidParentheses("(()())()((()(())))")); //18
-        System.out.println(longestValidParentheses("()(())")); //6
+    // T: O(N)
+    // S: O(N)
+    public int longestValidParentheses(String s) {
+        if (s == null || s.length() < 2) return 0;
+
+        int n = s.length();
+        int[] dp = new int[n];
+        int res = 0;
+        for (int i = 1; i < n; i++) {
+            if (s.charAt(i) == '(') continue;
+            // search for the longest valid parentheses ending at index i
+            if (s.charAt(i - 1) == '(') {
+                dp[i] = 2 + (i - 2 >= 0 ? dp[i - 2] : 0);
+            } else if (i - dp[i - 1] - 1 >= 0 && s.charAt(i - dp[i - 1] - 1) == '(') {
+                dp[i] = 2 + dp[i - 1] + (i - dp[i - 1] - 2 >= 0 ? dp[i - dp[i - 1] - 2] : 0);
+            }
+            res = Math.max(res, dp[i]);
+        }
+        return res;
     }
 }
-

@@ -9,10 +9,9 @@ import java.util.Deque;
  * #Hard #DP
  */
 public class BestTimeToBuyAndSellStockIV {
-
     public static void main(String[] args) {
-        System.out.println(maxProfit(2, new int[]{2, 4, 1}));//2
-        System.out.println(maxProfit(2, new int[]{3, 2, 6, 5, 0, 3}));//7
+        System.out.println(maxProfit(2, new int[]{2, 4, 1})); // 2
+        System.out.println(maxProfit(2, new int[]{3, 2, 6, 5, 0, 3})); // 7
     }
 
 //    private static int maxProfit(int k, int[] prices) {
@@ -53,9 +52,8 @@ public class BestTimeToBuyAndSellStockIV {
     private static int solveMaxProfit(int[] prices) {
         int res = 0;
         for (int i = 1; i < prices.length; i++) {
-            if (prices[i] - prices[i - 1] > 0) {
-                res += prices[i] - prices[i - 1];
-            }
+            int diff = prices[i] - prices[i - 1];
+            if (diff > 0) res += diff;
         }
         return res;
     }

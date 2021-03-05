@@ -103,7 +103,7 @@ public class Tree {
         System.out.println("Diameter = " + hd.diameter(root));
     }
 
-    static class TreeNode {
+    private static class TreeNode {
         final int value;
         TreeNode left;
         TreeNode right;
@@ -124,7 +124,7 @@ public class Tree {
         }
     }
 
-    static class TreeNodePrio implements Comparable<TreeNodePrio> {
+    private static class TreeNodePrio implements Comparable<TreeNodePrio> {
         final TreeNode node;
         final long prio;
         final int l, r, level;

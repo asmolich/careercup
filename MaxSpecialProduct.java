@@ -7,10 +7,12 @@ import java.util.List;
  * InterviewBit. MAXSPPROD. https://www.interviewbit.com/problems/maxspprod/
  */
 public class MaxSpecialProduct {
+    private static final int MOD = 1000000007;
+
     public static void main(String[] args) {
         System.out.println(maxSpecialProduct(List.of(
-            5, 9, 6, 8, 6, 4, 6, 9, 5, 4, 9
-            //7, 5, 7, 9, 8, 7
+                5, 9, 6, 8, 6, 4, 6, 9, 5, 4, 9
+                //7, 5, 7, 9, 8, 7
         )));
     }
 
@@ -38,7 +40,7 @@ public class MaxSpecialProduct {
 
         int max = 0;
         for (int i = 0; i < n; i++) {
-            int p = ((leftSpecialValue[i] % 1000000007) * (rightSpecialValue[i] % 1000000007)) % 1000000007;
+            int p = ((leftSpecialValue[i] % MOD) * (rightSpecialValue[i] % MOD)) % MOD;
             if (max < p) max = p;
         }
 

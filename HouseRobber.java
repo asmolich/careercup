@@ -1,6 +1,8 @@
 /**
- * LeetCode. 198. House Robber
+ * LeetCode
+ * 198. House Robber
  * https://leetcode.com/problems/house-robber/
+ * #Medium #DP
  */
 public class HouseRobber {
     public static void main(String[] args) {

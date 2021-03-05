@@ -7,11 +7,10 @@ import java.util.Arrays;
  * #Hard #DP
  */
 public class BestTimeToBuyAndSellStockIII {
-
     public static void main(String[] args) {
-        System.out.println(maxProfit(new int[]{3, 3, 5, 0, 0, 3, 1, 4}));//6
-        System.out.println(maxProfit(new int[]{1, 2, 3, 4, 5}));//4
-        System.out.println(maxProfit(new int[]{7, 6, 4, 3, 1}));//0
+        System.out.println(maxProfit(new int[]{3, 3, 5, 0, 0, 3, 1, 4})); // 6
+        System.out.println(maxProfit(new int[]{1, 2, 3, 4, 5})); // 4
+        System.out.println(maxProfit(new int[]{7, 6, 4, 3, 1})); // 0
     }
 
     private static int maxProfit(int[] prices) {

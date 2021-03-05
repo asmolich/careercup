@@ -3,7 +3,9 @@ import java.util.Arrays;
 import java.util.Deque;
 
 /**
- * InterviewBit. Min XOR Value. https://www.interviewbit.com/problems/min-xor-value/
+ * InterviewBit
+ * Min XOR Value
+ * https://www.interviewbit.com/problems/min-xor-value/
  */
 public class MinXorValue {
     public static void main(String[] args) {
@@ -15,7 +17,7 @@ public class MinXorValue {
         System.out.println(minXor(data));
     }
 
-    static class TrieNode {
+    private static class TrieNode {
         TrieNode zero;
         TrieNode one;
         Integer val;

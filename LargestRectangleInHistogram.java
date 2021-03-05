@@ -2,7 +2,8 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 
 /**
- * LeetCode 84. Largest Rectangle in Histogram
+ * LeetCode
+ * 84. Largest Rectangle in Histogram
  * https://leetcode.com/problems/largest-rectangle-in-histogram/
  * #Hard #Stack
  */
@@ -11,6 +12,8 @@ public class LargestRectangleInHistogram {
         LargestRectangleInHistogram sol = new LargestRectangleInHistogram();
         System.out.println(sol.largestRectangleArea(new int[]{2, 1, 5, 6, 2, 3})); // 10
         System.out.println(sol.largestRectangleArea(new int[]{2, 4})); // 4
+        System.out.println(sol.largestRectangleArea(new int[]{2, 0, 2, 1, 1})); // 3
+        System.out.println(sol.largestRectangleArea(new int[]{0, 0, 1})); // 1
     }
 
     public int largestRectangleArea(int[] a) {
@@ -18,9 +21,8 @@ public class LargestRectangleInHistogram {
 
         int n = a.length;
         Deque<Integer> deq = new ArrayDeque<>();
-        deq.add(0);
         int max = 0;
-        for (int i = 1; i < n; i++) {
+        for (int i = 0; i < n; i++) {
             //System.out.println(deq);
             while (!deq.isEmpty() && a[i] < a[deq.getLast()]) {
                 int idx = deq.removeLast();
@@ -28,7 +30,7 @@ public class LargestRectangleInHistogram {
                 max = Math.max(max, w * a[idx]);
                 //System.out.println("idx = " + idx + ", max = " + max);
             }
-            deq.add(i);
+            deq.addLast(i);
         }
         while (!deq.isEmpty()) {
             int idx = deq.removeLast();

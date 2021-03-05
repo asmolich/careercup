@@ -2,7 +2,7 @@ import java.util.ArrayDeque;
 import java.util.Queue;
 
 public class NextGreaterBST {
-    static class TreeNode {
+    private static class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;

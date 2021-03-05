@@ -3,9 +3,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * LeetCode 1. Two Sum
+ * LeetCode
+ * 1. Two Sum
  * https://leetcode.com/problems/two-sum/
- * #Easy #Hash
+ * #Easy #KSum #HashTable
+ * https://skyxu.me/2018/08/05/a-generic-solution-to-k-sum-problems/
  */
 public class TwoSum {
     public static void main(String[] args) {
@@ -18,9 +20,9 @@ public class TwoSum {
     private static int[] twoSum(int[] nums, int target) {
         if (nums == null || nums.length == 0) return new int[0];
 
-        int length = nums.length;
-        Map<Integer, Integer> ind = new HashMap<>(length);
-        for (int i = 0; i < length; i++) {
+        int n = nums.length;
+        Map<Integer, Integer> ind = new HashMap<>(n);
+        for (int i = 0; i < n; i++) {
             Integer idx = ind.get(target - nums[i]);
             if (idx != null) return new int[]{idx, i};
             ind.put(nums[i], i);

@@ -1,10 +1,12 @@
 /**
- * LeetCode. Min Cost Climbing Stairs
+ * LeetCode
+ * 746. Min Cost Climbing Stairs
  * https://leetcode.com/problems/min-cost-climbing-stairs/
+ * #Easy #DP
  */
 public class MinCostClimbingStairs {
     public static void main(String[] args) {
-        System.out.println(minCostClimbingStairs(new int[]{}));
+        System.out.println(minCostClimbingStairs(new int[]{})); // 0
         System.out.println(minCostClimbingStairs(new int[]{10, 15, 20})); // 15
         System.out.println(minCostClimbingStairs(new int[]{1, 100, 1, 1, 1, 100, 1, 1, 100, 1})); // 6
     }

@@ -43,7 +43,7 @@ class TrieNode {
   }
 }
 
-public class Solution {
+public class OfficerLocationSearch {
 
   public static void print(TrieNode root) {
     if (root == null) {
@@ -198,7 +198,7 @@ public class Solution {
     System.out.println("***********");
     System.out.println(query(root, ""));
     System.out.println("***********");
-    System.out.println(query(root, "qwe"));
+    System.out.println(query(root, "SimplifyPath"));
     System.out.println("***********");
     System.out.println(query(root, "any"));
     System.out.println("***********");

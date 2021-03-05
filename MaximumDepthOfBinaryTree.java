@@ -2,7 +2,8 @@ import java.util.ArrayDeque;
 import java.util.Queue;
 
 /**
- * LeetCode. 104. Maximum Depth of Binary Tree
+ * LeetCode
+ * 104. Maximum Depth of Binary Tree
  * https://leetcode.com/problems/maximum-depth-of-binary-tree/
  */
 public class MaximumDepthOfBinaryTree {

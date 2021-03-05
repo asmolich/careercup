@@ -12,8 +12,8 @@ public class ListIntersection {
         System.out.println(s.getIntersectionNode(a, b).val);
     }
 
-    //Definition for singly-linked list.
-    static class ListNode {
+    // Definition for singly-linked list.
+    private static class ListNode {
         public final int val;
         public ListNode next = null;
 

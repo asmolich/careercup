@@ -1,5 +1,5 @@
 public class LinkedLists {
-    static class ListNode {
+    private static class ListNode {
         ListNode next = null;
         final int val;
 

@@ -2,9 +2,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * LeetCode. Easy
+ * LeetCode
  * 217. Contains Duplicate
  * https://leetcode.com/problems/contains-duplicate/
+ * #Easy
  */
 public class ContainsDuplicate {
     public static void main(String[] args) {

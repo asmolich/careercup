@@ -1,7 +1,9 @@
 import java.util.Arrays;
 
 /**
- * Hacker Rank. Flatland Space Stations. https://www.hackerrank.com/challenges/flatland-space-stations/problem
+ * Hacker Rank
+ * Flatland Space Stations
+ * https://www.hackerrank.com/challenges/flatland-space-stations/problem
  */
 public class FlatlandSpaceStations {
     public static void main(String[] args) {

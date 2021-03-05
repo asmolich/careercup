@@ -3,17 +3,13 @@ import java.util.Comparator;
 import java.util.PriorityQueue;
 
 /**
- * Hacker Rank. Cavity Map. https://www.hackerrank.com/challenges/cavity-map/problem
+ * Hacker Rank
+ * Cavity Map
+ * https://www.hackerrank.com/challenges/cavity-map/problem
  */
 public class CavityMap {
     public static void main(String[] args) {
-        System.out.println(
-            Arrays.toString(
-                cavityMap(new String[]{
-                    "989",
-                    "191",
-                    "111"
-                })));
+        System.out.println(Arrays.toString(cavityMap(new String[]{"989", "191", "111"})));
     }
 
     static class GridElem {
@@ -23,10 +19,10 @@ public class CavityMap {
         @Override
         public String toString() {
             return "GridElem{" +
-                "x=" + x +
-                ", y=" + y +
-                ", val=" + val +
-                "}\n";
+                    "x=" + x +
+                    ", y=" + y +
+                    ", val=" + val +
+                    "}\n";
         }
     }
 
@@ -39,8 +35,8 @@ public class CavityMap {
         }
 
         PriorityQueue<GridElem> q = new PriorityQueue<>(
-            Comparator.<GridElem>comparingInt(a -> a.val)
-                .thenComparingInt(a -> visited[a.x][a.y]));
+                Comparator.<GridElem>comparingInt(a -> a.val)
+                        .thenComparingInt(a -> visited[a.x][a.y]));
         GridElem elem;
         for (int i = 0; i < grid[0].length(); i++) {
             elem = new GridElem();
@@ -95,11 +91,11 @@ public class CavityMap {
         int y = elem.y;
 
         return x > 0 && x < visited.length - 1 &&
-            y > 0 && y < visited[x].length - 1 &&
-            visited[x - 1][y] == 2 &&
-            visited[x + 1][y] == 2 &&
-            visited[x][y - 1] == 2 &&
-            visited[x][y + 1] == 2;
+                y > 0 && y < visited[x].length - 1 &&
+                visited[x - 1][y] == 2 &&
+                visited[x + 1][y] == 2 &&
+                visited[x][y - 1] == 2 &&
+                visited[x][y + 1] == 2;
     }
 
     private static void addNeighbors(GridElem elem, PriorityQueue<GridElem> q, int[][] visited, String[] grid) {

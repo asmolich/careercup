@@ -1,9 +1,10 @@
 import java.util.TreeSet;
 
 /**
- * LeetCode. Medium
+ * LeetCode
  * 220. Contains Duplicate III
  * https://leetcode.com/problems/contains-duplicate-iii/
+ * #Medium
  */
 public class ContainsDuplicateIII {
     public static void main(String[] args) {

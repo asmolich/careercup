@@ -4,20 +4,22 @@ import java.util.concurrent.Semaphore;
  * LeetCode
  * 1114. Print in Order
  * https://leetcode.com/problems/print-in-order/
+ * #Easy
  */
+@SuppressWarnings("unused")
 public class ConcurrencyPrintInOrder {
-
-    private Semaphore[] semaphore = {
-        new Semaphore(1),
-        new Semaphore(1),
-        new Semaphore(1)};
+    private final Semaphore[] semaphore = {
+            new Semaphore(1),
+            new Semaphore(1),
+            new Semaphore(1)};
 
     public ConcurrencyPrintInOrder() {
         try {
             for (int i = 1; i < semaphore.length; i++) {
                 semaphore[i].acquire();
             }
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
     }
 
     public void first(Runnable printFirst) throws InterruptedException {

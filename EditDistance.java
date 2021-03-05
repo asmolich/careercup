@@ -1,40 +1,48 @@
 import java.util.Arrays;
 
+/**
+ * LeetCode
+ * 72. Edit Distance
+ * https://leetcode.com/problems/edit-distance/
+ * #Hard #DP
+ */
 public class EditDistance {
     public static void main(String[] args) {
         EditDistance ed = new EditDistance();
         String[][] samples = new String[][]{
-            {"abc", "abc"},
-            {"bce", "abcde"},
-            {"Anshuman Antihuman", ""},
-            {"Anshuman", "Antihuman"},
-            {null, null},
-            {"", null},
-            {null, ""},
-            {"", ""},
-            {"aaa", "aa"},
-            {"bbbaabaa", "aababbabb"},
-            {"abaaaaaa", "aaaaaaa"},
-            {"bceb", "abcdeab"},
-            {"baaaab", "bbbbabbbabbbbb"},
-            {"bbbba", "b"}
+                {"abc", "abc"},
+                {"bce", "abcde"},
+                {"Anshuman Antihuman", ""},
+                {"Anshuman", "Antihuman"},
+                {null, null},
+                {"", null},
+                {null, ""},
+                {"", ""},
+                {"aaa", "aa"},
+                {"bbbaabaa", "aababbabb"},
+                {"abaaaaaa", "aaaaaaa"},
+                {"bceb", "abcdeab"},
+                {"baaaab", "bbbbabbbabbbbb"},
+                {"bbbba", "b"}
         };
         for (String[] data : samples) {
-            System.out.println("Distance between \"" + data[0] + "\" and \"" + data[1] + "\" is " + ed.distance(data[0], data[1]));
+            System.out.println("Distance between \"" + data[0] + "\" and \"" + data[1] + "\" is " + ed.minDistance(data[0], data[1]));
         }
     }
 
-    public int distance(String s1, String s2) {
+    public int minDistance(String s1, String s2) {
         if (s1 == null && s2 == null) return 0;
         if (s1 == null || s1.isEmpty() && s2 != null) return s2.length();
-        if (s2 == null || s2.isEmpty() && s1 != null) return s1.length();
+        if (s2 == null || s2.isEmpty()) return s1.length();
         if (s1.equals(s2)) return 0;
 
         int n = s1.length();
         int m = s2.length();
         int[][] dp = new int[n + 1][m + 1];
 
+        //noinspection StatementWithEmptyBody
         for (int i = 1; i <= n; dp[i][0] = i++) ;
+        //noinspection StatementWithEmptyBody
         for (int j = 1; j <= m; dp[0][j] = j++) ;
 
         for (int i = 1; i <= n; i++) {

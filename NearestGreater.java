@@ -29,7 +29,7 @@ public class NearestGreater {
         int max = 0;
         for (int i = 1; i < a.length; i++) {
             System.out.println("max = " + max);
-            Integer top = stack.getLast();
+            int top = stack.getLast();
             if (a[i] == a[max]) { b[i] = -1; }
             if (a[i] == a[top]) {
                 b[i] = b[top];

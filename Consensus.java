@@ -8,8 +8,12 @@ import java.util.PriorityQueue;
 import java.util.Set;
 
 /**
- * Indeed. On-site. Round 1
- * Not finished
+ * Indeed
+ * <p>
+ * Given n iterators. Collect only those numbers that occur in more than k iterators.
+ * <p>
+ * #Medium #Iterator #Interview
+ * #Incomplete
  */
 public class Consensus {
     public static void main(String[] args) {
